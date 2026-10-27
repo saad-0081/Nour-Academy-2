@@ -2,70 +2,125 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Nour Academy</title>
-
-  <
-  <link rel="stylesheet" href="/src/input.css">
-  <script type="module" src="/src/js/dashboard.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Nour Academy</title>
+    <link rel="stylesheet" href="/src/input.css">
 </head>
 
-<body class="min-h-screen bg-nour-blue font-sans text-nour-navy">
-  <div class="mx-auto max-w-6xl space-y-6 p-4 sm:p-8">
-    <header class="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-nour-mist p-5">
-      <a href="index.html" class="font-display text-2xl font-bold text-nour-blue">
-        Nour Academy
-      </a>
-      <nav class="flex gap-3">
-        <a href="index.html" class="rounded-full px-4 py-2 hover:bg-nour-orange/30">
-          Inscriptions
-        </a>
-        <a href="tableau-de-bord.html" class="rounded-full bg-nour-orange px-4 py-2">
-          Tableau de bord
-        </a>
-      </nav>
-    </header>
-    <main class="space-y-6">
-      <h1 class="font-display text-3xl font-bold text-nour-orange">
-        Tableau de bord
-      </h1>
-      <section class="grid gap-4 sm:grid-cols-2">
-        <article class="rounded-3xl bg-nour-orange p-6">
-          <h2>Inscrits</h2>
-          <p id="stat-inscrits" class="mt-2 font-display text-4xl font-bold">0</p>
-          <p class="text-sm">Dossiers au total</p>
-        </article>
-        <article class="rounded-3xl bg-nour-orange p-6">
-          <h2>Recettes encaissées</h2>
-          <p class="mt-2 font-display text-4xl font-bold">
-            <span id="stat-recettes">0</span> MAD
-          </p>
-          <p class="text-sm">Statut Payée</p>
-        </article>
-      </section>
-      <section class="grid gap-5 lg:grid-cols-2">
-        <article class="rounded-3xl bg-nour-mist p-6">
-          <h2 class="mb-4 font-display text-xl font-bold text-nour-blue">
-            Répartition par statut
-          </h2>
-          <ul id="liste-statuts" class="space-y-3"></ul>
-        </article>
-        <article class="rounded-3xl bg-nour-mist p-6">
-          <h2 class="mb-4 font-display text-xl font-bold text-nour-blue">
-            Remplissage par cours
-          </h2>
-          <p class="mb-4 text-sm">15 places par groupe</p>
-          <ul id="liste-cours" class="space-y-3"></ul>
-        </article>
-      </section>
+<body class="min-h-screen bg-[#E5E5E5] p-3 md:p-6">
+    <main class="mx-auto max-w-6xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-5 md:p-8">
+        <nav class="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-full bg-[#D5E2EF] px-5 py-3 md:px-6">
+            <h1 class="text-xl font-bold text-[#1D5885]">
+                Nour Academy
+            </h1>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="inscriptions.html" class="rounded-full bg-[#F79428] px-4 py-2 font-semibold text-[#173E5B]">
+                    Inscriptions
+                </a>
+                <a href="admin.html" class="rounded-full px-3 py-2 text-[#263D50]">
+                    Tableau de bord
+                </a>
+            </div>
+        </nav>
+        <h2 class="mb-5 text-2xl font-bold text-[#F79428] md:text-3xl">
+            <span class="mr-2">→</span> TABLEAU DE BORD
+        </h2>
+        <section class="mb-4 grid gap-4 md:grid-cols-2">
+            <article class="rounded-3xl bg-[#F79428] p-5 text-[#173E5B]">
+                <p class="mb-1 text-sm">Inscrits</p>
+                <h3 class="text-3xl font-bold">0</h3>
+                <p class="mt-1 text-sm">dossiers au total</p>
+            </article>
+            <article class="rounded-3xl bg-[#F79428] p-5 text-[#173E5B]">
+                <p class="mb-1 text-sm">Recettes encaissées</p>
+                <h3 class="text-3xl font-bold">0 MAD</h3>
+                <p class="mt-1 text-sm">Statut Payée</p>
+            </article>
+        </section>
+        <section class="mb-4 rounded-3xl bg-[#D5E2EF] p-5 md:p-6">
+            <h3 class="mb-4 text-xl font-bold text-[#1D5885]">
+                Répartition par statut
+            </h3>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>En attente</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#F79428]"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>Validée</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+            <div>
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>Payée</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#173E5B]"></div>
+                </div>
+            </div>
+        </section>
+        <section class="rounded-3xl bg-[#D5E2EF] p-5 md:p-6">
+            <h3 class="mb-4 text-xl font-bold text-[#1D5885]">
+                Remplissage par cours (0 places)
+            </h3>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between gap-2 text-sm text-[#263D50]">
+                    <span>Math - 2 Bac</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between gap-2 text-sm text-[#263D50]">
+                    <span>Physique - 2 Bac</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between gap-2 text-sm text-[#263D50]">
+                    <span>SVT - 1 Bac</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between gap-2 text-sm text-[#263D50]">
+                    <span>Français - Tronc Commun</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+            <div>
+                <div class="mb-1 flex justify-between gap-2 text-sm text-[#263D50]">
+                    <span>Anglais - 3eme année collège</span>
+                    <span>0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div class="h-full w-0 rounded-full bg-[#1D5885]"></div>
+                </div>
+            </div>
+        </section>
     </main>
-    <footer class="text-center text-sm text-white/80">
-      Nour Academy - Administration
-    </footer>
 
-  </div>
 </body>
 </html>
-
-    
