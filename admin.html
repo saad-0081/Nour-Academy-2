@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nour Academy — Inscriptions</title>
+  <meta name="theme-color" content="#15558a">
+
+  <link rel="stylesheet" href="/src/input.css">
+
+
+  <script type="module" src="/src/js/admin.js"></script>
+</head>
+
+<body class="min-h-screen bg-[#15558a] text-slate-800">
+
+  <main class="mx-auto min-h-screen max-w-7xl p-3 sm:p-5 lg:p-8">
+    <header class="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-full bg-[#CDDAE6] px-4 py-3 shadow-lg sm:px-6">
+      <a href="index.html" class="text-lg font-extrabold text-[#17558A]">
+        Nour Academy
+        <span class="text-xs font-normal text-slate-500"> </span>
+      </a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm">
+        <a href="admin.html"
+           class="rounded-full bg-[#F28D2B] px-4 py-2 font-semibold text-white">
+          Inscriptions
+        </a>
+        <a href="index.html"
+           class="rounded-full px-3 py-2 font-medium text-slate-600 hover:bg-blue-50">
+          Retour au site
+        </a>
+      </nav>
+    </header>
+    <section class="mb-5">
+      <h1 class="text-2xl font-extrabold tracking-wide text-[#F7A343] sm:text-3xl">
+        <span aria-hidden="true">→</span> INSCRIPTIONS
+      </h1>
+      <p class="mt-2 text-sm text-blue-100">
+        Gérez les dossiers des élèves de Nour Academy.
+      </p>
+    </section>
+    <section class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
+        <p class="text-sm font-medium text-slate-500">Total des inscriptions</p>
+        <p id="total" class="mt-1 text-3xl font-extrabold text-[#17558A]">0</p>
+      </article>
+      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
+        <p class="text-sm font-medium text-slate-500">Dossiers validés</p>
+        <p id="valid" class="mt-1 text-3xl font-extrabold text-green-600">0</p>
+      </article>
+      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
+        <p class="text-sm font-medium text-slate-500">En attente</p>
+        <p id="pending" class="mt-1 text-3xl font-extrabold text-orange-500">0</p>
+      </article>
+    </section>
+    <section class="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium text-blue-100">
+          Recherche (nom ou téléphone)
+        </span>
+        <input
+          id="search"
+          type="search"
+          placeholder="Ex. Benali ou 06 12..."
+          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
+        >
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium text-blue-100">Statut</span>
+        <select
+          id="statusFilter"
+          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
+        >
+          <option value="">Tous les statuts</option>
+          <option value="validée">Validée</option>
+          <option value="en attente">En attente</option>
+          <option value="payée">Payée</option>
+        </select>
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium text-blue-100">Tri</span>
+        <select
+          id="sortOrder"
+          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
+        >
+          <option value="recent">Date : du plus récent</option>
+          <option value="oldest">Date : du plus ancien</option>
+          <option value="name">Nom : A à Z</option>
+        </select>
+      </label>
+    </section>
+    <section class="mb-5 flex flex-wrap items-center gap-3">
+      <button
+        id="exportCsv"
+        type="button"
+        class="rounded-full border border-white/70 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#CDDAE6] hover:text-[#17558A]"
+      >
+  <option value="rejected" class="bg-[#9FB6CC] text-[#173F63]">Refusé</option>    
+        </select>
+      </label>
+    </section>
+    <section class="mb-5 flex flex-wrap items-center gap-3">
+      <button
+        id="exportCsv"
+        type="button"
+        class="rounded-full border border-white/70 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#CDDAE6] hover:text-[#17558A]"
+      >
+        ↓ Exporter CSV
+      </button>
+      <a
+        href="inscription.html"
+        class="rounded-full bg-[#F28D2B] px-5 py-2 text-sm font-bold text-white shadow transition hover:bg-orange-500"
+      >
+        + Nouvelle inscription
+      </a>
+    </section>
+    <p id="resultsCount" class="mb-3 text-sm font-medium text-blue-100">
+      Chargement des inscriptions...
+    </p>
+    <section class="overflow-hidden rounded-2xl bg-[#CDDAE6] shadow-xl">
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[1050px] text-left text-sm">
+          <thead class="bg-[#DCEAF6] text-[#24547A]">
+            <tr>
+              <th class="px-4 py-4 font-bold">N° dossier</th>
+              <th class="px-4 py-4 font-bold">Élève</th>
+              <th class="px-4 py-4 font-bold">Niveau</th>
+              <th class="px-4 py-4 font-bold">Cours</th>
+              <th class="px-4 py-4 font-bold">Centre</th>
+              <th class="px-4 py-4 font-bold">Téléphone parent</th>
+              <th class="px-4 py-4 font-bold">Statut</th>
+              <th class="px-4 py-4 font-bold">Date</th>
+            </tr>
+          </thead>
+          <tbody id="rows" class="divide-y divide-blue-100">
+            <tr>
+              <td colspan="8" class="p-8 text-center text-slate-500">
+                Chargement...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="flex flex-wrap items-center justify-between gap-2 border-t border-blue-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
+        <span>Nour Academy · Administration</span>
+        <span>Gestion des inscriptions</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script type="module" src="/src/js/admin.js"></script>
+</body>
+</html>
