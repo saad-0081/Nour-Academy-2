@@ -1,1 +1,9 @@
 @import "tailwindcss";
+@theme {
+    --color-nour-blue: #13538a;
+    --color-nour-orange: #f28d2b;
+    --color-nour-navy: #0a2a45;
+    --color-nour-mist: #cddae6;
+    --font-sans: "Poppins", Arial, sans-serif;
+    --font-display: "Lora", Georgia, serif;
+}

@@ -1,7 +1,71 @@
-<h1 class="text-3xl font-bold text-blue-600 p-6">
-  Nour Academy
-</h1>
 
-<p class="text-gray-600 px-6">
-  Gestion des inscriptions des élèves.
-</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Nour Academy</title>
+
+  <
+  <link rel="stylesheet" href="/src/input.css">
+  <script type="module" src="/src/js/dashboard.js"></script>
+</head>
+
+<body class="min-h-screen bg-nour-blue font-sans text-nour-navy">
+  <div class="mx-auto max-w-6xl space-y-6 p-4 sm:p-8">
+    <header class="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-nour-mist p-5">
+      <a href="index.html" class="font-display text-2xl font-bold text-nour-blue">
+        Nour Academy
+      </a>
+      <nav class="flex gap-3">
+        <a href="index.html" class="rounded-full px-4 py-2 hover:bg-nour-orange/30">
+          Inscriptions
+        </a>
+        <a href="tableau-de-bord.html" class="rounded-full bg-nour-orange px-4 py-2">
+          Tableau de bord
+        </a>
+      </nav>
+    </header>
+    <main class="space-y-6">
+      <h1 class="font-display text-3xl font-bold text-nour-orange">
+        Tableau de bord
+      </h1>
+      <section class="grid gap-4 sm:grid-cols-2">
+        <article class="rounded-3xl bg-nour-orange p-6">
+          <h2>Inscrits</h2>
+          <p id="stat-inscrits" class="mt-2 font-display text-4xl font-bold">0</p>
+          <p class="text-sm">Dossiers au total</p>
+        </article>
+        <article class="rounded-3xl bg-nour-orange p-6">
+          <h2>Recettes encaissées</h2>
+          <p class="mt-2 font-display text-4xl font-bold">
+            <span id="stat-recettes">0</span> MAD
+          </p>
+          <p class="text-sm">Statut Payée</p>
+        </article>
+      </section>
+      <section class="grid gap-5 lg:grid-cols-2">
+        <article class="rounded-3xl bg-nour-mist p-6">
+          <h2 class="mb-4 font-display text-xl font-bold text-nour-blue">
+            Répartition par statut
+          </h2>
+          <ul id="liste-statuts" class="space-y-3"></ul>
+        </article>
+        <article class="rounded-3xl bg-nour-mist p-6">
+          <h2 class="mb-4 font-display text-xl font-bold text-nour-blue">
+            Remplissage par cours
+          </h2>
+          <p class="mb-4 text-sm">15 places par groupe</p>
+          <ul id="liste-cours" class="space-y-3"></ul>
+        </article>
+      </section>
+    </main>
+    <footer class="text-center text-sm text-white/80">
+      Nour Academy - Administration
+    </footer>
+
+  </div>
+</body>
+</html>
+
+    
