@@ -1,156 +1,391 @@
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Nour Academy — Inscriptions</title>
-  <meta name="theme-color" content="#15558a">
+    <title>Inscriptions - Nour Academy</title>
 
-  <link rel="stylesheet" href="/src/input.css">
-
-
-  <script type="module" src="/src/js/admin.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="/src/js/admin.js"></script>
 </head>
 
-<body class="min-h-screen bg-[#15558a] text-slate-800">
+<body class="min-h-screen bg-[#E5E5E5] p-3 sm:p-4 md:p-6">
 
-  <main class="mx-auto min-h-screen max-w-7xl p-3 sm:p-5 lg:p-8">
-    <header class="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-full bg-[#CDDAE6] px-4 py-3 shadow-lg sm:px-6">
-      <a href="index.html" class="text-lg font-extrabold text-[#17558A]">
-        Nour Academy
-        <span class="text-xs font-normal text-slate-500"> </span>
-      </a>
-      <nav class="flex flex-wrap items-center gap-2 text-sm">
-        <a href="admin.html"
-           class="rounded-full bg-[#F28D2B] px-4 py-2 font-semibold text-white">
-          Inscriptions
-        </a>
-        <a href="index.html"
-           class="rounded-full px-3 py-2 font-medium text-slate-600 hover:bg-blue-50">
-          Retour au site
-        </a>
-      </nav>
-    </header>
-    <section class="mb-5">
-      <h1 class="text-2xl font-extrabold tracking-wide text-[#F7A343] sm:text-3xl">
-        <span aria-hidden="true">→</span> INSCRIPTIONS
-      </h1>
-      <p class="mt-2 text-sm text-blue-100">
-        Gérez les dossiers des élèves de Nour Academy.
-      </p>
-    </section>
-    <section class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
-        <p class="text-sm font-medium text-slate-500">Total des inscriptions</p>
-        <p id="total" class="mt-1 text-3xl font-extrabold text-[#17558A]">0</p>
-      </article>
-      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
-        <p class="text-sm font-medium text-slate-500">Dossiers validés</p>
-        <p id="valid" class="mt-1 text-3xl font-extrabold text-green-600">0</p>
-      </article>
-      <article class="rounded-xl border border-white/20 bg-[#CDDAE6]/95 p-4 shadow">
-        <p class="text-sm font-medium text-slate-500">En attente</p>
-        <p id="pending" class="mt-1 text-3xl font-extrabold text-orange-500">0</p>
-      </article>
-    </section>
-    <section class="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <label class="block">
-        <span class="mb-1 block text-xs font-medium text-blue-100">
-          Recherche (nom ou téléphone)
-        </span>
-        <input
-          id="search"
-          type="search"
-          placeholder="Ex. Benali ou 06 12..."
-          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
-        >
-      </label>
-      <label class="block">
-        <span class="mb-1 block text-xs font-medium text-blue-100">Statut</span>
-        <select
-          id="statusFilter"
-          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
-        >
-          <option value="">Tous les statuts</option>
-          <option value="validée">Validée</option>
-          <option value="en attente">En attente</option>
-          <option value="payée">Payée</option>
-        </select>
-      </label>
-      <label class="block">
-        <span class="mb-1 block text-xs font-medium text-blue-100">Tri</span>
-        <select
-          id="sortOrder"
-          class="w-full rounded-lg border-0 bg-[#CDDAE6] p-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-orange-400"
-        >
-          <option value="recent">Date : du plus récent</option>
-          <option value="oldest">Date : du plus ancien</option>
-          <option value="name">Nom : A à Z</option>
-        </select>
-      </label>
-    </section>
-    <section class="mb-5 flex flex-wrap items-center gap-3">
-      <button
-        id="exportCsv"
-        type="button"
-        class="rounded-full border border-white/70 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#CDDAE6] hover:text-[#17558A]"
-      >
-  <option value="rejected" class="bg-[#9FB6CC] text-[#173F63]">Refusé</option>    
-        </select>
-      </label>
-    </section>
-    <section class="mb-5 flex flex-wrap items-center gap-3">
-      <button
-        id="exportCsv"
-        type="button"
-        class="rounded-full border border-white/70 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#CDDAE6] hover:text-[#17558A]"
-      >
-        ↓ Exporter CSV
-      </button>
-      <a
-        href="inscription.html"
-        class="rounded-full bg-[#F28D2B] px-5 py-2 text-sm font-bold text-white shadow transition hover:bg-orange-500"
-      >
-        + Nouvelle inscription
-      </a>
-    </section>
-    <p id="resultsCount" class="mb-3 text-sm font-medium text-blue-100">
-      Chargement des inscriptions...
-    </p>
-    <section class="overflow-hidden rounded-2xl bg-[#CDDAE6] shadow-xl">
-      <div class="overflow-x-auto">
-        <table class="w-full min-w-[1050px] text-left text-sm">
-          <thead class="bg-[#DCEAF6] text-[#24547A]">
-            <tr>
-              <th class="px-4 py-4 font-bold">N° dossier</th>
-              <th class="px-4 py-4 font-bold">Élève</th>
-              <th class="px-4 py-4 font-bold">Niveau</th>
-              <th class="px-4 py-4 font-bold">Cours</th>
-              <th class="px-4 py-4 font-bold">Centre</th>
-              <th class="px-4 py-4 font-bold">Téléphone parent</th>
-              <th class="px-4 py-4 font-bold">Statut</th>
-              <th class="px-4 py-4 font-bold">Date</th>
-            </tr>
-          </thead>
-          <tbody id="rows" class="divide-y divide-blue-100">
-            <tr>
-              <td colspan="8" class="p-8 text-center text-slate-500">
-                Chargement...
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <footer class="flex flex-wrap items-center justify-between gap-2 border-t border-blue-100 bg-slate-50 px-4 py-3 text-xs text-slate-500">
-        <span>Nour Academy · Administration</span>
-        <span>Gestion des inscriptions</span>
-      </footer>
+    <!-- CONNEXION ADMIN -->
+    <section id="loginSection"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-[#E5E5E5] p-4">
+
+        <form id="loginForm"
+            class="w-full max-w-md rounded-3xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-6 sm:p-8">
+
+            <h1 class="mb-2 text-center text-3xl font-bold text-[#F79428]">
+                Nour Academy
+            </h1>
+
+            <p class="mb-6 text-center text-[#D5E2EF]">
+                Espace administrateur
+            </p>
+
+            <label for="username"
+                class="mb-2 block text-sm font-semibold text-white">
+                Nom d'utilisateur
+            </label>
+
+            <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                autocomplete="username"
+                placeholder="Nom d'utilisateur"
+                class="mb-4 w-full rounded-xl border border-[#9FB6CC] bg-white p-3 text-[#173E5B] outline-none focus:ring-2 focus:ring-[#F79428]"
+            >
+
+            <label for="password"
+                class="mb-2 block text-sm font-semibold text-white">
+                Mot de passe
+            </label>
+
+            <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autocomplete="current-password"
+                placeholder="Mot de passe"
+                class="mb-4 w-full rounded-xl border border-[#9FB6CC] bg-white p-3 text-[#173E5B] outline-none focus:ring-2 focus:ring-[#F79428]"
+            >
+
+            <p id="loginError"
+                role="alert"
+                class="mb-3 hidden text-sm text-red-200">
+                Nom d'utilisateur ou mot de passe incorrect !
+            </p>
+
+            <button
+                type="submit"
+                class="w-full rounded-full bg-[#F79428] p-3 font-bold text-[#173E5B] transition hover:bg-orange-300">
+                Se connecter
+            </button>
+
+            <a href="index.html"
+                class="mt-5 block text-center text-sm text-[#D5E2EF] hover:underline">
+                Retour à l'accueil
+            </a>
+        </form>
     </section>
 
-  </main>
 
-  <script type="module" src="/src/js/admin.js"></script>
+    <!-- PAGE ADMIN -->
+    <main id="adminContent"
+        class="mx-auto hidden w-full max-w-7xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-3 sm:p-5 md:p-8">
+
+        <!-- Navigation -->
+        <nav class="mb-6 flex flex-col gap-3 rounded-3xl bg-[#D5E2EF] p-4 sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:px-6">
+
+            <a href="index.html"
+                class="text-xl font-bold text-[#1D5885]">
+                Nour Academy
+            </a>
+
+            <div class="flex flex-wrap items-center gap-2 text-sm">
+
+                <a href="admin.html"
+                    class="rounded-full bg-[#F79428] px-4 py-2 font-semibold text-[#173E5B]">
+                    Inscriptions
+                </a>
+
+                <a href="index.html"
+                    class="rounded-full px-3 py-2 text-[#263D50] hover:bg-white/50">
+                    Accueil
+                </a>
+
+                <button id="logoutButton"
+                    type="button"
+                    class="rounded-full bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700">
+                    Déconnexion
+                </button>
+            </div>
+
+            <button id="resetButton"
+                type="button"
+                class="rounded-full bg-[#1D5885] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#174B73]">
+                Réinitialiser les données
+            </button>
+
+        </nav>
+
+        <!-- Titre -->
+        <h1 class="mb-5 text-xl font-bold text-[#F79428] sm:text-2xl">
+            <span class="mr-2">→</span> INSCRIPTIONS
+        </h1>
+
+        <!-- Recherche et filtres -->
+        <section class="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
+                <label for="searchInput"
+                    class="mb-2 block text-sm font-semibold text-[#263D50]">
+                    Recherche (nom ou téléphone)
+                </label>
+
+                <input id="searchInput"
+                    type="search"
+                    placeholder="Ex. : Bennani"
+                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+            </div>
+
+            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
+                <label for="statusFilter"
+                    class="mb-2 block text-sm font-semibold text-[#263D50]">
+                    Statut
+                </label>
+
+                <select id="statusFilter"
+                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="">Tous les statuts</option>
+                    <option value="En attente">En attente</option>
+                    <option value="Validée">Validée</option>
+                    <option value="Payée">Payée</option>
+                </select>
+            </div>
+
+            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
+                <label for="courseFilter"
+                    class="mb-2 block text-sm font-semibold text-[#263D50]">
+                    Cours
+                </label>
+
+                <select id="courseFilter"
+                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="">Tous les cours</option>
+                    <option value="Math - 2 Bac">Math - 2 Bac</option>
+                    <option value="Physique - 2 Bac">Physique - 2 Bac</option>
+                    <option value="SVT - 1 Bac">SVT - 1 Bac</option>
+                    <option value="Français - Tronc Commun">Français - Tronc Commun</option>
+                    <option value="Anglais - 3eme année collège">Anglais - 3eme année collège</option>
+                </select>
+            </div>
+
+            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
+                <label for="sortFilter"
+                    class="mb-2 block text-sm font-semibold text-[#263D50]">
+                    Trier par date
+                </label>
+
+                <select id="sortFilter"
+                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="newest">Plus récentes</option>
+                    <option value="oldest">Plus anciennes</option>
+                </select>
+            </div>
+
+        </section>
+
+        <!-- Actions -->
+        <section class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+            <p id="resultCount" class="text-sm text-white">
+                0 inscription(s)
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+
+                <button id="exportButton"
+                    type="button"
+                    class="rounded-full border border-[#D5E2EF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#174B73]">
+                    Exporter CSV
+                </button>
+
+                <button id="openModalButton"
+                    type="button"
+                    class="rounded-full bg-[#F79428] px-4 py-2 text-sm font-semibold text-[#173E5B] transition hover:bg-orange-300">
+                    + Nouvelle inscription
+                </button>
+
+            </div>
+        </section>
+
+        <!-- Tableau des inscriptions -->
+        <section class="overflow-hidden rounded-2xl bg-[#D5E2EF]">
+
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[850px] border-collapse text-left text-sm">
+
+                    <thead class="bg-[#9FB6CC] text-[#173E5B]">
+                        <tr>
+                            <th class="whitespace-nowrap px-4 py-3">N° dossier</th>
+                            <th class="whitespace-nowrap px-4 py-3">Élève</th>
+                            <th class="whitespace-nowrap px-4 py-3">Niveau</th>
+                            <th class="whitespace-nowrap px-4 py-3">Cours</th>
+                            <th class="whitespace-nowrap px-4 py-3">Téléphone parent</th>
+                            <th class="whitespace-nowrap px-4 py-3">Statut</th>
+                            <th class="whitespace-nowrap px-4 py-3">Date</th>
+                            <th class="whitespace-nowrap px-4 py-3">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="registrationTable"
+                        class="divide-y divide-[#9FB6CC] text-[#263D50]">
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="emptyMessage"
+                class="px-4 py-10 text-center text-sm text-[#52697D]">
+                Aucune inscription pour le moment.
+            </div>
+
+        </section>
+
+        <!-- Pagination -->
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-white">
+
+            <button id="previousButton"
+                type="button"
+                disabled
+                class="rounded-full bg-[#D5E2EF] px-4 py-2 font-semibold text-[#1D5885] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50">
+                ← Précédent
+            </button>
+
+            <span id="pageInfo">Page 0 / 0</span>
+
+            <button id="nextButton"
+                type="button"
+                disabled
+                class="rounded-full bg-[#D5E2EF] px-4 py-2 font-semibold text-[#1D5885] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50">
+                Suivant →
+            </button>
+
+        </div>
+
+        <!-- Fenêtre nouvelle inscription -->
+        <section id="registrationModal"
+            class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-black/50 p-3 sm:p-5">
+
+            <div class="my-auto max-h-[95vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-[#D5E2EF] p-5 sm:p-7">
+
+                <div class="mb-5 flex items-center justify-between gap-3">
+
+                    <h2 id="modalTitle"
+                        class="text-xl font-bold text-[#1D5885]">
+                        Nouvelle inscription
+                    </h2>
+
+                    <button id="closeModalButton"
+                        type="button"
+                        aria-label="Fermer"
+                        class="rounded-full px-3 py-1 text-2xl text-[#1D5885] transition hover:bg-[#9FB6CC]">
+                        &times;
+                    </button>
+
+                </div>
+
+                <form id="registrationForm" class="space-y-4">
+
+                    <input id="editId" type="hidden">
+
+                    <div>
+                        <label for="studentName"
+                            class="mb-1 block text-sm font-semibold text-[#263D50]">
+                            Nom complet de l'élève
+                        </label>
+
+                        <input id="studentName"
+                            type="text"
+                            required
+                            maxlength="100"
+                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    </div>
+
+                    <div>
+                        <label for="studentLevel"
+                            class="mb-1 block text-sm font-semibold text-[#263D50]">
+                            Niveau scolaire
+                        </label>
+
+                        <input id="studentLevel"
+                            type="text"
+                            required
+                            maxlength="100"
+                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    </div>
+
+                    <div>
+                        <label for="studentCourse"
+                            class="mb-1 block text-sm font-semibold text-[#263D50]">
+                            Cours
+                        </label>
+
+                        <select id="studentCourse"
+                            required
+                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                            <option value="">Choisir un cours</option>
+                            <option value="Math - 2 Bac">Math - 2 Bac</option>
+                            <option value="Physique - 2 Bac">Physique - 2 Bac</option>
+                            <option value="SVT - 1 Bac">SVT - 1 Bac</option>
+                            <option value="Français - Tronc Commun">Français - Tronc Commun</option>
+                            <option value="Anglais - 3eme année collège">Anglais - 3eme année collège</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="parentPhone"
+                            class="mb-1 block text-sm font-semibold text-[#263D50]">
+                            Téléphone du parent
+                        </label>
+
+                        <input id="parentPhone"
+                            type="tel"
+                            required
+                            maxlength="30"
+                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    </div>
+
+                    <div>
+                        <label for="registrationStatus"
+                            class="mb-1 block text-sm font-semibold text-[#263D50]">
+                            Statut
+                        </label>
+
+                        <select id="registrationStatus"
+                            required
+                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                            <option value="En attente">En attente</option>
+                            <option value="Validée">Validée</option>
+                            <option value="Payée">Payée</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-wrap justify-end gap-3 pt-2">
+
+                        <button id="cancelButton"
+                            type="button"
+                            class="rounded-full border border-[#9FB6CC] px-5 py-3 font-semibold text-[#1D5885] transition hover:bg-white">
+                            Annuler
+                        </button>
+
+                        <button type="submit"
+                            class="rounded-full bg-[#F79428] px-5 py-3 font-semibold text-[#173E5B] transition hover:bg-orange-300">
+                            Enregistrer
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-6 text-center text-xs text-[#D5E2EF]">
+            Nour Academy · Gestion des inscriptions
+        </footer>
+
+    </main>
+
 </body>
 </html>
