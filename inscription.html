@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle inscription - Nour Academy</title>
+    <link rel="stylesheet" href="/src/input.css">
+</head>
+
+<body class="flex min-h-screen items-center justify-center bg-[#E5E5E5] p-4 font-sans">
+
+<main class="w-full max-w-md rounded-lg border-[3px] border-[#9FB6CC] bg-[#1D5885] p-5 sm:p-6">
+    <section class="rounded-[22px] bg-[#F79428] p-4 sm:p-5">
+        <h1 class="mb-4 font-serif text-xl font-bold text-[#173E5B]">
+            Nouvelle inscription
+        </h1>
+        <form id="inscriptionForm" class="space-y-2">
+            <div>
+                <label for="nom" class="mb-1 block text-xs font-semibold text-[#173E5B]">
+                    Nom de l'élève
+                </label>
+                <input type="text" id="nom" required
+                    placeholder="Nom complet de l'élève"
+                    class="min-h-11 w-full rounded-md border border-[#9FB6CC] bg-[#D5E2EF] p-2.5 text-sm text-[#173E5B] outline-none focus:border-2 focus:border-[#1D5885]">
+            </div>
+            <div>
+                <label for="telephone" class="mb-1 block text-xs font-semibold text-[#173E5B]">
+                    Téléphone du parent
+                </label>
+                <input type="tel" id="telephone" required
+                    placeholder="06 12 34 56 78"
+                    class="min-h-11 w-full rounded-md border border-[#9FB6CC] bg-[#D5E2EF] p-2.5 text-sm text-[#173E5B] outline-none focus:border-2 focus:border-[#1D5885]">
+            </div>
+            <div>
+                <label for="niveau" class="mb-1 block text-xs font-semibold text-[#173E5B]">
+                    Niveau
+                </label>
+                <select id="niveau" required
+                    class="min-h-11 w-full rounded-md border border-[#9FB6CC] bg-[#D5E2EF] p-2.5 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="">Choisir un niveau</option>
+                    <option>Tronc Commun</option>
+                    <option>1 Bac</option>
+                    <option>2 Bac</option>
+                    <option>1ère année collège</option>
+                    <option>2ème année collège</option>
+                    <option>3ème année collège</option>
+                </select>
+            </div>
+            <div>
+                <label for="cours" class="mb-1 block text-xs font-semibold text-[#173E5B]">
+                    Cours
+                </label>
+                <select id="cours" required
+                    class="min-h-11 w-full rounded-md border border-[#9FB6CC] bg-[#D5E2EF] p-2.5 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="">Choisir un cours</option>
+                    <option value="Math - 2 Bac">Math - 2 Bac - 350 MAD / mois</option>
+                    <option value="Physique - 2 Bac">Physique - 2 Bac - 350 MAD / mois</option>
+                    <option value="SVT - 1 Bac">SVT - 1 Bac - 300 MAD / mois</option>
+                    <option value="Français - Tronc Commun">Français - Tronc Commun - 300 MAD / mois</option>
+                    <option value="Anglais - 3eme année collège">Anglais - 3ème année collège - 250 MAD / mois</option>
+                </select>
+            </div>
+            <div>
+                <label for="centre" class="mb-1 block text-xs font-semibold text-[#173E5B]">
+                    Centre
+                </label>
+                <select id="centre" required
+                    class="min-h-11 w-full rounded-md border border-[#9FB6CC] bg-[#D5E2EF] p-2.5 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
+                    <option value="">Choisir un centre</option>
+                    <option value="Hay Al Matar">Hay Al Matar</option>
+                </select>
+            </div>
+            <p id="duplicateError" role="alert"
+                class="hidden rounded-md bg-white p-2.5 text-xs font-bold text-red-800">
+                Cet élève est déjà inscrit à ce cours.
+            </p>
+            <p id="capacityError" role="alert"
+                class="hidden rounded-md bg-white p-2.5 text-xs font-bold text-red-800">
+                Groupe complet. Choisissez un autre cours.
+            </p>
+            <p id="successMessage" role="status"
+                class="hidden rounded-md bg-white p-2.5 text-xs font-bold text-green-800"></p>
+            <div class="flex flex-wrap justify-end gap-2 pt-2">
+                <button type="button" id="cancelBtn"
+                    class="rounded-full border-2 border-[#173E5B] px-4 py-2.5 text-sm font-bold text-[#173E5B] transition hover:bg-[#D5E2EF]">
+                    Annuler
+                </button>
+                <button type="submit" id="saveBtn"
+                    class="rounded-full border-2 border-[#1D5885] bg-[#1D5885] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#174568] disabled:cursor-not-allowed disabled:opacity-50">
+                    Enregistrer
+                </button>
+            </div>
+
+        </form>
+    </section>
+</main>
+
+<script>
+    const STORAGE_KEY = "inscriptions";
+    const CAPACITE = 15;
+
+    const form = document.querySelector("#inscriptionForm");
+    const nomInput = document.querySelector("#nom");
+    const telephoneInput = document.querySelector("#telephone");
+    const niveauInput = document.querySelector("#niveau");
+    const coursInput = document.querySelector("#cours");
+    const centreInput = document.querySelector("#centre");
+
+    const duplicateError = document.querySelector("#duplicateError");
+    const capacityError = document.querySelector("#capacityError");
+    const successMessage = document.querySelector("#successMessage");
+    const saveBtn = document.querySelector("#saveBtn");
+    const cancelBtn = document.querySelector("#cancelBtn");
+
+    function getInscriptions() {
+        try {
+            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            return Array.isArray(data) ? data : [];
+        } catch {
+            return [];
+        }
+    }
+
+    function normaliser(texte) {
+        return texte.trim()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/\s+/g, " ");
+    }
+
+    function masquerMessages() {
+        duplicateError.classList.add("hidden");
+        capacityError.classList.add("hidden");
+        successMessage.classList.add("hidden");
+        successMessage.textContent = "";
+    }
+
+    function verifierInscription() {
+        masquerMessages();
+
+        const nom = normaliser(nomInput.value);
+        const cours = coursInput.value;
+
+        if (!nom || !cours) {
+            saveBtn.disabled = false;
+            return false;
+        }
+
+        const inscriptions = getInscriptions();
+
+        const doublon = inscriptions.some(inscription =>
+            normaliser(inscription.nom || inscription.nomEleve || "") === nom &&
+            inscription.cours === cours
+        );
+
+        const nombreInscrits = inscriptions.filter(
+            inscription => inscription.cours === cours
+        ).length;
+
+        let erreur = false;
+
+        if (doublon) {
+            duplicateError.classList.remove("hidden");
+            erreur = true;
+        }
+
+        if (nombreInscrits >= CAPACITE) {
+            capacityError.textContent =
+                `Groupe complet : ${nombreInscrits}/${CAPACITE} élèves. Choisissez un autre cours.`;
+            capacityError.classList.remove("hidden");
+            erreur = true;
+        }
+
+        saveBtn.disabled = erreur;
+        return erreur;
+    }
+
+    form.addEventListener("input", verifierInscription);
+    form.addEventListener("change", verifierInscription);
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (!form.reportValidity() || verifierInscription()) return;
+
+        const inscriptions = getInscriptions();
+
+        inscriptions.push({
+            id: Date.now(),
+            nom: nomInput.value.trim(),
+            telephone: telephoneInput.value.trim(),
+            niveau: niveauInput.value,
+            cours: coursInput.value,
+            centre: centreInput.value,
+            dateInscription: new Date().toISOString()
+        });
+
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(inscriptions));
+
+            masquerMessages();
+            successMessage.textContent = "Inscription enregistrée avec succès !";
+            successMessage.classList.remove("hidden");
+
+            form.reset();
+            saveBtn.disabled = false;
+        } catch {
+            alert("Erreur : impossible de sauvegarder l'inscription.");
+        }
+    });
+
+    cancelBtn.addEventListener("click", function() {
+        form.reset();
+        masquerMessages();
+        saveBtn.disabled = false;
+    });
+
+    verifierInscription();
+</script>
+
+</body>
+</html>
