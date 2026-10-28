@@ -5,387 +5,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Inscriptions - Nour Academy</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="/src/js/admin.js"></script>
+    <title>Tableau de bord - Nour Academy</title>
+    <link rel="stylesheet" href="/src/input.css">
+    <script type="module" src="/src/js/dashboard.js"></script>
 </head>
-
-<body class="min-h-screen bg-[#E5E5E5] p-3 sm:p-4 md:p-6">
-
-    <!-- CONNEXION ADMIN -->
-    <section id="loginSection"
-        class="fixed inset-0 z-[100] flex items-center justify-center bg-[#E5E5E5] p-4">
-
-        <form id="loginForm"
-            class="w-full max-w-md rounded-3xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-6 sm:p-8">
-
-            <h1 class="mb-2 text-center text-3xl font-bold text-[#F79428]">
-                Nour Academy
-            </h1>
-
-            <p class="mb-6 text-center text-[#D5E2EF]">
-                Espace administrateur
-            </p>
-
-            <label for="username"
-                class="mb-2 block text-sm font-semibold text-white">
-                Nom d'utilisateur
-            </label>
-
-            <input
-                id="username"
-                name="username"
-                type="text"
-                required
-                autocomplete="username"
-                placeholder="Nom d'utilisateur"
-                class="mb-4 w-full rounded-xl border border-[#9FB6CC] bg-white p-3 text-[#173E5B] outline-none focus:ring-2 focus:ring-[#F79428]"
-            >
-
-            <label for="password"
-                class="mb-2 block text-sm font-semibold text-white">
-                Mot de passe
-            </label>
-
-            <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                autocomplete="current-password"
-                placeholder="Mot de passe"
-                class="mb-4 w-full rounded-xl border border-[#9FB6CC] bg-white p-3 text-[#173E5B] outline-none focus:ring-2 focus:ring-[#F79428]"
-            >
-
-            <p id="loginError"
-                role="alert"
-                class="mb-3 hidden text-sm text-red-200">
-                Nom d'utilisateur ou mot de passe incorrect !
-            </p>
-
-            <button
-                type="submit"
-                class="w-full rounded-full bg-[#F79428] p-3 font-bold text-[#173E5B] transition hover:bg-orange-300">
-                Se connecter
-            </button>
-
-            <a href="index.html"
-                class="mt-5 block text-center text-sm text-[#D5E2EF] hover:underline">
-                Retour à l'accueil
-            </a>
-        </form>
-    </section>
-
-
-    <!-- PAGE ADMIN -->
-    <main id="adminContent"
-        class="mx-auto hidden w-full max-w-7xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-3 sm:p-5 md:p-8">
-
-        <!-- Navigation -->
-        <nav class="mb-6 flex flex-col gap-3 rounded-3xl bg-[#D5E2EF] p-4 sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:px-6">
-
-            <a href="index.html"
-                class="text-xl font-bold text-[#1D5885]">
-                Nour Academy
-            </a>
-
-            <div class="flex flex-wrap items-center gap-2 text-sm">
-
-                <a href="admin.html"
-                    class="rounded-full bg-[#F79428] px-4 py-2 font-semibold text-[#173E5B]">
-                    Inscriptions
-                </a>
-
-                <a href="index.html"
-                    class="rounded-full px-3 py-2 text-[#263D50] hover:bg-white/50">
-                    Accueil
-                </a>
-
-                <button id="logoutButton"
-                    type="button"
-                    class="rounded-full bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700">
-                    Déconnexion
-                </button>
+<body class="min-h-screen bg-[#E5E5E5] p-3 md:p-6">
+    <main id="adminContent" class="mx-auto max-w-6xl border-[3px] border-[#9FB6CC] bg-[#1D5885] p-5 md:p-8">
+        <nav class="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-full bg-[#D5E2EF] px-5 py-3 md:px-6">
+            <h1 class="text-xl font-bold text-[#1D5885]">Nour Academy</h1>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="inscriptions.html" class="rounded-full px-4 py-2 font-semibold text-[#263D50] hover:bg-white/50">Inscriptions</a>
+                <a href="admin.html" class="rounded-full bg-[#F79428] px-3 py-2 font-semibold text-[#173E5B]">Tableau de bord</a>
+                <button id="logoutButton" type="button" class="rounded-full bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700">Déconnexion</button>
             </div>
-
-            <button id="resetButton"
-                type="button"
-                class="rounded-full bg-[#1D5885] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#174B73]">
-                Réinitialiser les données
-            </button>
-
         </nav>
-
-        <!-- Titre -->
-        <h1 class="mb-5 text-xl font-bold text-[#F79428] sm:text-2xl">
-            <span class="mr-2">→</span> INSCRIPTIONS
-        </h1>
-
-        <!-- Recherche et filtres -->
-        <section class="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-
-            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
-                <label for="searchInput"
-                    class="mb-2 block text-sm font-semibold text-[#263D50]">
-                    Recherche (nom ou téléphone)
-                </label>
-
-                <input id="searchInput"
-                    type="search"
-                    placeholder="Ex. : Bennani"
-                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-            </div>
-
-            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
-                <label for="statusFilter"
-                    class="mb-2 block text-sm font-semibold text-[#263D50]">
-                    Statut
-                </label>
-
-                <select id="statusFilter"
-                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    <option value="">Tous les statuts</option>
-                    <option value="En attente">En attente</option>
-                    <option value="Validée">Validée</option>
-                    <option value="Payée">Payée</option>
-                </select>
-            </div>
-
-            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
-                <label for="courseFilter"
-                    class="mb-2 block text-sm font-semibold text-[#263D50]">
-                    Cours
-                </label>
-
-                <select id="courseFilter"
-                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    <option value="">Tous les cours</option>
-                    <option value="Math - 2 Bac">Math - 2 Bac</option>
-                    <option value="Physique - 2 Bac">Physique - 2 Bac</option>
-                    <option value="SVT - 1 Bac">SVT - 1 Bac</option>
-                    <option value="Français - Tronc Commun">Français - Tronc Commun</option>
-                    <option value="Anglais - 3eme année collège">Anglais - 3eme année collège</option>
-                </select>
-            </div>
-
-            <div class="min-w-0 rounded-xl bg-[#D5E2EF] p-3">
-                <label for="sortFilter"
-                    class="mb-2 block text-sm font-semibold text-[#263D50]">
-                    Trier par date
-                </label>
-
-                <select id="sortFilter"
-                    class="w-full min-w-0 rounded-lg border border-[#9FB6CC] bg-white px-3 py-2 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    <option value="newest">Plus récentes</option>
-                    <option value="oldest">Plus anciennes</option>
-                </select>
-            </div>
-
+        <h2 class="mb-5 text-2xl font-bold text-[#F79428] md:text-3xl">
+            <span class="mr-2">→</span> TABLEAU DE BORD
+        </h2>
+        <section class="mb-4 grid gap-4 md:grid-cols-2">
+            <article class="rounded-3xl bg-[#F79428] p-5 text-[#173E5B]">
+                <p class="mb-1 text-sm">Inscrits</p>
+                <h3 id="totalInscriptions" class="text-3xl font-bold">0</h3>
+                <p class="mt-1 text-sm">dossiers au total</p>
+            </article>
+            <article class="rounded-3xl bg-[#F79428] p-5 text-[#173E5B]">
+                <p class="mb-1 text-sm">Recettes encaissées</p>
+                <h3 id="totalRecettes" class="text-3xl font-bold">0 MAD</h3>
+                <p class="mt-1 text-sm">Statut Payée</p>
+            </article>
         </section>
-
-        <!-- Actions -->
-        <section class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-
-            <p id="resultCount" class="text-sm text-white">
-                0 inscription(s)
-            </p>
-
-            <div class="flex flex-wrap gap-2">
-
-                <button id="exportButton"
-                    type="button"
-                    class="rounded-full border border-[#D5E2EF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#174B73]">
-                    Exporter CSV
-                </button>
-
-                <button id="openModalButton"
-                    type="button"
-                    class="rounded-full bg-[#F79428] px-4 py-2 text-sm font-semibold text-[#173E5B] transition hover:bg-orange-300">
-                    + Nouvelle inscription
-                </button>
-
-            </div>
-        </section>
-
-        <!-- Tableau des inscriptions -->
-        <section class="overflow-hidden rounded-2xl bg-[#D5E2EF]">
-
-            <div class="overflow-x-auto">
-                <table class="w-full min-w-[850px] border-collapse text-left text-sm">
-
-                    <thead class="bg-[#9FB6CC] text-[#173E5B]">
-                        <tr>
-                            <th class="whitespace-nowrap px-4 py-3">N° dossier</th>
-                            <th class="whitespace-nowrap px-4 py-3">Élève</th>
-                            <th class="whitespace-nowrap px-4 py-3">Niveau</th>
-                            <th class="whitespace-nowrap px-4 py-3">Cours</th>
-                            <th class="whitespace-nowrap px-4 py-3">Téléphone parent</th>
-                            <th class="whitespace-nowrap px-4 py-3">Statut</th>
-                            <th class="whitespace-nowrap px-4 py-3">Date</th>
-                            <th class="whitespace-nowrap px-4 py-3">Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="registrationTable"
-                        class="divide-y divide-[#9FB6CC] text-[#263D50]">
-                    </tbody>
-
-                </table>
-            </div>
-
-            <div id="emptyMessage"
-                class="px-4 py-10 text-center text-sm text-[#52697D]">
-                Aucune inscription pour le moment.
-            </div>
-
-        </section>
-
-        <!-- Pagination -->
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-white">
-
-            <button id="previousButton"
-                type="button"
-                disabled
-                class="rounded-full bg-[#D5E2EF] px-4 py-2 font-semibold text-[#1D5885] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50">
-                ← Précédent
-            </button>
-
-            <span id="pageInfo">Page 0 / 0</span>
-
-            <button id="nextButton"
-                type="button"
-                disabled
-                class="rounded-full bg-[#D5E2EF] px-4 py-2 font-semibold text-[#1D5885] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50">
-                Suivant →
-            </button>
-
-        </div>
-
-        <!-- Fenêtre nouvelle inscription -->
-        <section id="registrationModal"
-            class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-black/50 p-3 sm:p-5">
-
-            <div class="my-auto max-h-[95vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-[#D5E2EF] p-5 sm:p-7">
-
-                <div class="mb-5 flex items-center justify-between gap-3">
-
-                    <h2 id="modalTitle"
-                        class="text-xl font-bold text-[#1D5885]">
-                        Nouvelle inscription
-                    </h2>
-
-                    <button id="closeModalButton"
-                        type="button"
-                        aria-label="Fermer"
-                        class="rounded-full px-3 py-1 text-2xl text-[#1D5885] transition hover:bg-[#9FB6CC]">
-                        &times;
-                    </button>
-
+        <section class="mb-4 rounded-3xl bg-[#D5E2EF] p-5 md:p-6">
+            <h3 class="mb-4 text-xl font-bold text-[#1D5885]">Répartition par statut</h3>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>En attente</span>
+                    <span id="attenteCount">0/0</span>
                 </div>
-
-                <form id="registrationForm" class="space-y-4">
-
-                    <input id="editId" type="hidden">
-
-                    <div>
-                        <label for="studentName"
-                            class="mb-1 block text-sm font-semibold text-[#263D50]">
-                            Nom complet de l'élève
-                        </label>
-
-                        <input id="studentName"
-                            type="text"
-                            required
-                            maxlength="100"
-                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    </div>
-
-                    <div>
-                        <label for="studentLevel"
-                            class="mb-1 block text-sm font-semibold text-[#263D50]">
-                            Niveau scolaire
-                        </label>
-
-                        <input id="studentLevel"
-                            type="text"
-                            required
-                            maxlength="100"
-                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    </div>
-
-                    <div>
-                        <label for="studentCourse"
-                            class="mb-1 block text-sm font-semibold text-[#263D50]">
-                            Cours
-                        </label>
-
-                        <select id="studentCourse"
-                            required
-                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                            <option value="">Choisir un cours</option>
-                            <option value="Math - 2 Bac">Math - 2 Bac</option>
-                            <option value="Physique - 2 Bac">Physique - 2 Bac</option>
-                            <option value="SVT - 1 Bac">SVT - 1 Bac</option>
-                            <option value="Français - Tronc Commun">Français - Tronc Commun</option>
-                            <option value="Anglais - 3eme année collège">Anglais - 3eme année collège</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="parentPhone"
-                            class="mb-1 block text-sm font-semibold text-[#263D50]">
-                            Téléphone du parent
-                        </label>
-
-                        <input id="parentPhone"
-                            type="tel"
-                            required
-                            maxlength="30"
-                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                    </div>
-
-                    <div>
-                        <label for="registrationStatus"
-                            class="mb-1 block text-sm font-semibold text-[#263D50]">
-                            Statut
-                        </label>
-
-                        <select id="registrationStatus"
-                            required
-                            class="w-full rounded-xl border border-[#9FB6CC] bg-white px-4 py-3 text-sm text-[#173E5B] outline-none focus:ring-2 focus:ring-[#1D5885]">
-                            <option value="En attente">En attente</option>
-                            <option value="Validée">Validée</option>
-                            <option value="Payée">Payée</option>
-                        </select>
-                    </div>
-
-                    <div class="flex flex-wrap justify-end gap-3 pt-2">
-
-                        <button id="cancelButton"
-                            type="button"
-                            class="rounded-full border border-[#9FB6CC] px-5 py-3 font-semibold text-[#1D5885] transition hover:bg-white">
-                            Annuler
-                        </button>
-
-                        <button type="submit"
-                            class="rounded-full bg-[#F79428] px-5 py-3 font-semibold text-[#173E5B] transition hover:bg-orange-300">
-                            Enregistrer
-                        </button>
-
-                    </div>
-
-                </form>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div id="attenteBar" class="h-full rounded-full bg-[#F79428]" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>Validée</span>
+                    <span id="valideeCount">0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div id="valideeBar" class="h-full rounded-full bg-[#1D5885]" style="width: 0%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="mb-1 flex justify-between text-sm text-[#263D50]">
+                    <span>Payée</span>
+                    <span id="payeeCount">0/0</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-[#9FB6CC]">
+                    <div id="payeeBar" class="h-full rounded-full bg-[#173E5B]" style="width: 0%"></div>
+                </div>
             </div>
         </section>
-
-        <!-- Footer -->
+        <section class="rounded-3xl bg-[#D5E2EF] p-5 md:p-6">
+            <h3 class="mb-4 text-xl font-bold text-[#1D5885]">
+                Remplissage par cours (<span id="capaciteTotale">75</span> places)
+            </h3>
+            <div id="coursContainer"></div>
+        </section>
         <footer class="mt-6 text-center text-xs text-[#D5E2EF]">
-            Nour Academy · Gestion des inscriptions
+            Nour Academy · Tableau de bord administrateur
         </footer>
-
     </main>
-
 </body>
 </html>
+
