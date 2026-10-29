@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nour Academy | Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F97316",
+                        secondary: "#1E40AF",
+                        "primary-light": "#FFF7ED",
+                        "secondary-light": "#EFF6FF"
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+
+    <div class="min-h-screen md:flex">
+
+        <!-- SIDEBAR -->
+        <aside class="flex w-full flex-col justify-between bg-secondary p-5 text-white md:min-h-screen md:w-64 md:shrink-0 md:rounded-r-3xl">
+
+            <div>
+                <div class="mb-10 flex items-center gap-3">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-2xl font-extrabold">
+                        N
+                    </div>
+
+                    <div>
+                        <h2 class="text-lg font-bold">Nour Academy</h2>
+                        <p class="text-sm text-blue-200">Administration</p>
+                    </div>
+                </div>
+
+                <p class="mb-4 px-3 text-xs font-bold uppercase tracking-widest text-blue-200">
+                    Menu principal
+                </p>
+
+                <nav class="space-y-2">
+                    <a href="#" class="block rounded-2xl bg-primary px-4 py-3 font-semibold text-white transition hover:bg-orange-600">
+                        Tableau de bord
+                    </a>
+
+                    <a href="#inscriptions" class="block rounded-2xl px-4 py-3 text-blue-50 transition hover:bg-white/10">
+                        Inscriptions
+                    </a>
+
+                    <a href="#cours" class="block rounded-2xl px-4 py-3 text-blue-50 transition hover:bg-white/10">
+                        Cours et groupes
+                    </a>
+
+                    <a href="#statistiques" class="block rounded-2xl px-4 py-3 text-blue-50 transition hover:bg-white/10">
+                        Statistiques
+                    </a>
+                </nav>
+            </div>
+
+            <div>
+                <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+                    <h3 class="font-bold">Besoin d'aide ?</h3>
+
+                    <p class="mt-2 text-sm leading-6 text-blue-100">
+                        Contactez l'équipe technique si vous rencontrez un problème.
+                    </p>
+
+                    <a href="mailto:support@nouracademy.example"
+                       class="mt-4 inline-block text-sm font-bold text-orange-300 hover:text-white">
+                        Contacter le support
+                    </a>
+                </div>
+
+                <p class="mt-6 text-center text-xs text-blue-200">
+                    Nour Academy · Version 1.0
+                </p>
+            </div>
+
+        </aside>
+
+        <!-- CONTENU PRINCIPAL -->
+        <main class="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+
+            <!-- HEADER -->
+            <header class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+                <div>
+                    <p class="text-sm text-slate-500">
+                        Administration /
+                        <span class="font-semibold text-primary">Dashboard</span>
+                    </p>
+
+                    <h1 class="mt-2 text-2xl font-extrabold tracking-tight text-secondary sm:text-3xl">
+                        Tableau de bord
+                    </h1>
+
+                    <p class="mt-2 text-sm text-slate-500 sm:text-base">
+                        Bienvenue ! Voici un aperçu de votre établissement.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 self-start rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:self-auto">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary font-bold text-white">
+                        AD
+                    </div>
+
+                    <div>
+                        <p class="font-bold">Administrateur</p>
+                        <p class="text-xs text-slate-500">Nour Academy</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- STATISTIQUES -->
+            <section id="statistiques" class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+                <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <p class="text-sm font-semibold text-slate-500">Total des inscriptions</p>
+                    <h2 id="totalInscriptions" class="mt-5 text-3xl font-extrabold text-secondary">0</h2>
+                    <p class="mt-4 text-sm font-semibold text-primary">Tous les centres</p>
+                </article>
+
+                <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <p class="text-sm font-semibold text-slate-500">Dossiers validés</p>
+                    <h2 id="dossiersValides" class="mt-5 text-3xl font-extrabold text-secondary">0</h2>
+                    <p class="mt-4 text-sm font-semibold text-green-600">Dossiers complets</p>
+                </article>
+
+                <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <p class="text-sm font-semibold text-slate-500">En attente</p>
+                    <h2 id="enAttente" class="mt-5 text-3xl font-extrabold text-secondary">0</h2>
+                    <p class="mt-4 text-sm font-semibold text-primary">Dossiers à traiter</p>
+                </article>
+
+                <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <p class="text-sm font-semibold text-slate-500">Revenus enregistrés</p>
+                    <h2 id="revenus" class="mt-5 break-words text-2xl font-extrabold text-secondary">0 MAD</h2>
+                    <p class="mt-4 text-sm font-semibold text-secondary">Paiements reçus</p>
+                </article>
+
+            </section>
+
+            <!-- AJOUTER UNE INSCRIPTION -->
+            <section class="mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+
+                <div class="mb-6">
+                    <h2 class="text-xl font-extrabold text-secondary">
+                        Ajouter une inscription
+                    </h2>
+
+                    <p class="mt-2 text-sm text-slate-500">
+                        Remplissez les informations du nouvel élève.
+                    </p>
+                </div>
+
+                <form id="formInscription" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <div>
+                        <label for="nom" class="mb-2 block text-sm font-semibold">Nom complet</label>
+                        <input id="nom" name="nom" type="text" maxlength="100" required
+                               class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-primary focus:ring-2 focus:ring-orange-100"
+                               placeholder="Nom de l'élève">
+                    </div>
+
+                    <div>
+                        <label for="coursSelect" class="mb-2 block text-sm font-semibold">Cours</label>
+                        <select id="coursSelect" name="cours" required
+                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-orange-100">
+                            <option value="">Choisir un cours</option>
+                            <option value="Mathématiques">Mathématiques</option>
+                            <option value="Physique">Physique</option>
+                            <option value="Français">Français</option>
+                            <option value="Anglais">Anglais</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="centre" class="mb-2 block text-sm font-semibold">Centre</label>
+                        <select id="centre" name="centre" required
+                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-orange-100">
+                            <option value="">Choisir un centre</option>
+                            <option value="Nador Centre">Nador Centre</option>
+                            <option value="Hay Al Matar">Hay Al Matar</option>
+                            <option value="Selouane">Selouane</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="date" class="mb-2 block text-sm font-semibold">Date d'inscription</label>
+                        <input id="date" name="date" type="date" required
+                               class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-orange-100">
+                    </div>
+
+                    <div>
+                        <label for="statut" class="mb-2 block text-sm font-semibold">Statut du dossier</label>
+                        <select id="statut" name="statut" required
+                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-orange-100">
+                            <option value="En attente">En attente</option>
+                            <option value="Validé">Validé</option>
+                            <option value="Incomplet">Incomplet</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="montant" class="mb-2 block text-sm font-semibold">Montant payé (MAD)</label>
+                        <input id="montant" name="montant" type="number" min="0" step="0.01" value="0" required
+                               class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-orange-100">
+                    </div>
+
+                    <div class="sm:col-span-2 lg:col-span-3">
+                        <button type="submit"
+                                class="rounded-xl bg-primary px-6 py-3 font-bold text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                            Ajouter l'inscription
+                        </button>
+
+                        <p id="messageForm" class="mt-3 text-sm" role="status" aria-live="polite"></p>
+                    </div>
+
+                </form>
+            </section>
+
+            <!-- REMPLISSAGE DES COURS -->
+            <section id="cours" class="mb-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <h2 class="text-xl font-extrabold text-secondary">Remplissage des cours</h2>
+
+                <p class="mb-6 mt-2 text-sm text-slate-500">
+                    Occupation des places disponibles.
+                </p>
+
+                <div id="coursProgression" class="space-y-6"></div>
+            </section>
+
+            <!-- TABLEAU DES INSCRIPTIONS -->
+            <section id="inscriptions" class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+
+                <div class="flex flex-col justify-between gap-4 p-6 sm:flex-row sm:items-center sm:p-7">
+                    <div>
+                        <h2 class="text-lg font-extrabold text-secondary">Inscriptions</h2>
+                        <p class="mt-1 text-sm text-slate-500">
+                            Consultez et gérez les dossiers des élèves.
+                        </p>
+                    </div>
+
+                    <span id="nombreTableau" class="w-fit rounded-full bg-primary-light px-4 py-2 text-sm font-bold text-primary">
+                        0 inscription
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-secondary-light text-xs uppercase tracking-wider text-secondary">
+                            <tr>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Élève</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Cours</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Centre</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Date</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Statut</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Montant</th>
+                                <th class="whitespace-nowrap px-6 py-4 font-bold">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tableInscriptions" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+
+                <div class="border-t border-slate-100 bg-slate-50 px-6 py-4">
+                    <p class="text-xs text-slate-500">
+                        Les données sont conservées dans le navigateur utilisé.
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="mt-8 flex flex-col justify-between gap-2 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-500 sm:flex-row sm:items-center">
+                <p>© 2026 Nour Academy</p>
+                <p>Gestion des inscriptions · Sahla Digital</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="scriptSecraitaire"></script>
+</body>
+</html>
