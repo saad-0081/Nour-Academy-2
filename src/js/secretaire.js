@@ -207,6 +207,119 @@ function afficherStatut(statut) {
     return `<span class="${couleur} px-3 py-1 rounded-full text-xs">${statut}</span>`;
 }
 
+function obtenirInscriptionsFiltrees() {
+    let resultat = [...inscriptions];
+
+    const recherche = document.getElementById("recherche").value
+        .trim().toLowerCase();
+
+    const statut = document.getElementById("filtreStatut").value;
+    const tri = document.getElementById("tri").value;
+
+    sessionStorage.setItem("recherche", recherche);
+    sessionStorage.setItem("statut", statut);
+    sessionStorage.setItem("tri", tri);
+
+    resultat = resultat.filter(function(i) {
+        return i.eleve.toLowerCase().includes(recherche) ||
+               i.telephone.includes(recherche);
+    });
+
+    if (statut !== "") {
+        resultat = resultat.filter(function(i) {
+            return i.statut === statut;
+        });
+    }
+
+    if (tri === "dateAsc") {
+        resultat.sort(function(a, b) {
+            return a.date.localeCompare(b.date);
+        });
+    } else if (tri === "dateDesc") {
+        resultat.sort(function(a, b) {
+            return b.date.localeCompare(a.date);
+        });
+    } else if (tri === "nomAsc") {
+        resultat.sort(function(a, b) {
+            return a.eleve.localeCompare(b.eleve);
+        });
+    } else if (tri === "nomDesc") {
+        resultat.sort(function(a, b) {
+            return b.eleve.localeCompare(a.eleve);
+        });
+    }
+
+    return resultat;
+}
+
+function afficherInscriptions() {
+    const resultat = obtenirInscriptionsFiltrees();
+    const totalPages = Math.max(1, Math.ceil(resultat.length / lignesParPage));
+
+    if (pageActuelle > totalPages) {
+        pageActuelle = totalPages;
+    }
+
+    const debut = (pageActuelle - 1) * lignesParPage;
+    const liste = resultat.slice(debut, debut + lignesParPage);
+
+    table.innerHTML = "";
+
+    liste.forEach(function(i) {
+        table.innerHTML += `
+            <tr class="border-b border-gray-100">
+                <td class="p-4">${i.eleve}</td>
+                <td class="p-4">${i.niveau}</td>
+                <td class="p-4">${i.cours}</td>
+                <td class="p-4">${i.telephone}</td>
+                <td class="p-4">${afficherStatut(i.statut)}</td>
+                <td class="p-4">${i.date}</td>
+                <td class="p-4">
+                    <button onclick="modifierInscription(${i.id})"
+                        class="text-bleu mr-2">Modifier</button>
+                    <button onclick="supprimerInscription(${i.id})"
+                        class="text-red-600">Supprimer</button>
+                </td>
+            </tr>`;
+    });
+
+    if (liste.length === 0) {
+        table.innerHTML = `
+            <tr><td colspan="7" class="p-6 text-center">
+                Aucune inscription trouvée.
+            </td></tr>`;
+    }
+
+    document.getElementById("nombreResultats").textContent =
+        resultat.length + " inscription(s) trouvée(s)";
+
+    document.getElementById("pageInfo").textContent =
+        "Page " + pageActuelle + " / " + totalPages;
+
+    document.getElementById("precedent").disabled = pageActuelle === 1;
+    document.getElementById("suivant").disabled = pageActuelle === totalPages;
+}
+
+function changerPage(direction) {
+    pageActuelle += direction;
+    afficherInscriptions();
+}
+
+document.getElementById("recherche").addEventListener("input", function() {
+    pageActuelle = 1;
+    afficherInscriptions();
+});
+
+document.getElementById("filtreStatut").addEventListener("change", function() {
+    pageActuelle = 1;
+    afficherInscriptions();
+});
+
+document.getElementById("tri").addEventListener("change", function() {
+    pageActuelle = 1;
+    afficherInscriptions();
+});
+
 chargerDonnees().catch(function() {
     alert("Erreur de chargement. Vérifie le chemin de data.json et utilise Live Server.");
 });
