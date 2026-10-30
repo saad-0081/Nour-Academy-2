@@ -1,0 +1,31 @@
+{
+  "cours": [
+    { "id": 1, "nom": "Mathématiques", "niveau": "1 Bac", "capacite": 15 },
+    { "id": 2, "nom": "Physique", "niveau": "2 Bac", "capacite": 15 },
+    { "id": 3, "nom": "Français", "niveau": "Tronc commun", "capacite": 15 },
+    { "id": 4, "nom": "Anglais", "niveau": "1 Bac", "capacite": 15 },
+    { "id": 5, "nom": "SVT", "niveau": "2 Bac", "capacite": 15 }
+  ],
+  "inscriptions": [
+    { "id": 1, "eleve": "Amine Alaoui", "niveau": "1 Bac", "cours": "Mathématiques", "telephone": "0612345678", "statut": "Payé", "date": "2026-10-01", "montant": 300 },
+    { "id": 2, "eleve": "Sara Benali", "niveau": "2 Bac", "cours": "Physique", "telephone": "0623456789", "statut": "En attente", "date": "2026-10-02", "montant": 350 },
+    { "id": 3, "eleve": "Youssef Karim", "niveau": "Tronc commun", "cours": "Français", "telephone": "0634567890", "statut": "Payé", "date": "2026-10-03", "montant": 250 },
+    { "id": 4, "eleve": "Salma Idrissi", "niveau": "1 Bac", "cours": "Anglais", "telephone": "0645678901", "statut": "Incomplet", "date": "2026-10-04", "montant": 280 },
+    { "id": 5, "eleve": "Omar Naciri", "niveau": "2 Bac", "cours": "SVT", "telephone": "0656789012", "statut": "Payé", "date": "2026-10-05", "montant": 320 },
+    { "id": 6, "eleve": "Aya Mansouri", "niveau": "Tronc commun", "cours": "Informatique", "telephone": "0667890123", "statut": "En attente", "date": "2026-10-06", "montant": 400 },
+    { "id": 7, "eleve": "Adam Berrada", "niveau": "1 Bac", "cours": "Mathématiques", "telephone": "0678901234", "statut": "Payé", "date": "2026-10-07", "montant": 300 },
+    { "id": 8, "eleve": "Meryem Fassi", "niveau": "2 Bac", "cours": "Physique", "telephone": "0689012345", "statut": "Incomplet", "date": "2026-10-08", "montant": 350 },
+    { "id": 9, "eleve": "Hamza Tazi", "niveau": "Tronc commun", "cours": "Français", "telephone": "0690123456", "statut": "Payé", "date": "2026-10-09", "montant": 250 },
+    { "id": 10, "eleve": "Imane Chraibi", "niveau": "1 Bac", "cours": "Anglais", "telephone": "0601234567", "statut": "Payé", "date": "2026-10-10", "montant": 280 },
+    { "id": 11, "eleve": "Mehdi Lahlou", "niveau": "2 Bac", "cours": "SVT", "telephone": "0611122233", "statut": "En attente", "date": "2026-10-11", "montant": 320 },
+    { "id": 12, "eleve": "Nour El Amrani", "niveau": "Tronc commun", "cours": "Informatique", "telephone": "0622233344", "statut": "Payé", "date": "2026-10-12", "montant": 400 },
+    { "id": 13, "eleve": "Anas Saidi", "niveau": "1 Bac", "cours": "Mathématiques", "telephone": "0633344455", "statut": "Incomplet", "date": "2026-10-13", "montant": 300 },
+    { "id": 14, "eleve": "Lina Haddad", "niveau": "2 Bac", "cours": "Physique", "telephone": "0644455566", "statut": "Payé", "date": "2026-10-14", "montant": 350 },
+    { "id": 15, "eleve": "Ilyas Amrani", "niveau": "Tronc commun", "cours": "Français", "telephone": "0655566677", "statut": "En attente", "date": "2026-10-15", "montant": 250 },
+    { "id": 16, "eleve": "Hiba Zahra", "niveau": "1 Bac", "cours": "Anglais", "telephone": "0666677788", "statut": "Payé", "date": "2026-10-16", "montant": 280 },
+    { "id": 17, "eleve": "Bilal Saad", "niveau": "2 Bac", "cours": "SVT", "telephone": "0677788899", "statut": "Payé", "date": "2026-10-17", "montant": 320 },
+    { "id": 18, "eleve": "Rania Bennis", "niveau": "Tronc commun", "cours": "Informatique", "telephone": "0688899900", "statut": "Incomplet", "date": "2026-10-18", "montant": 400 },
+    { "id": 19, "eleve": "Zakaria Kabbaj", "niveau": "1 Bac", "cours": "Mathématiques", "telephone": "0699900011", "statut": "En attente", "date": "2026-10-19", "montant": 300 },
+    { "id": 20, "eleve": "Maha Othmani", "niveau": "2 Bac", "cours": "Physique", "telephone": "0600011122", "statut": "Payé", "date": "2026-10-20", "montant": 350 }
+  ]
+}
