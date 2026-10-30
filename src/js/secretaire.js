@@ -305,6 +305,131 @@ function changerPage(direction) {
     afficherInscriptions();
 }
 
+function ouvrirFormulaire() {
+    formulaire.reset();
+    document.getElementById("idInscription").value = "";
+    document.getElementById("titreFormulaire").textContent = "Nouvelle inscription";
+    document.getElementById("erreur").textContent = "";
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+}
+
+function fermerFormulaire() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+}
+
+function modifierInscription(id) {
+    const i = inscriptions.find(function(inscription) {
+        return inscription.id === id;
+    });
+
+    if (!i) return;
+
+    document.getElementById("idInscription").value = i.id;
+    document.getElementById("eleve").value = i.eleve;
+    document.getElementById("niveau").value = i.niveau;
+    document.getElementById("cours").value = i.cours;
+    document.getElementById("telephone").value = i.telephone;
+    document.getElementById("statut").value = i.statut;
+    document.getElementById("montant").value = i.montant;
+
+    document.getElementById("titreFormulaire").textContent =
+        "Modifier l'inscription";
+
+    document.getElementById("erreur").textContent = "";
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+}
+
+formulaire.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const id = document.getElementById("idInscription").value;
+    const eleve = document.getElementById("eleve").value.trim();
+    const niveau = document.getElementById("niveau").value;
+    const nomCours = document.getElementById("cours").value;
+    const telephone = document.getElementById("telephone").value.trim();
+    const statut = document.getElementById("statut").value;
+    const montant = Number(document.getElementById("montant").value);
+    const erreur = document.getElementById("erreur");
+
+    erreur.textContent = "";
+
+    if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(eleve)) {
+        erreur.textContent = "Vérifie le nom complet de l'élève.";
+        return;
+    }
+
+    if (!/^0\d{9}$/.test(telephone)) {
+        erreur.textContent = "Le téléphone doit contenir 10 chiffres et commencer par 0.";
+        return;
+    }
+
+    if (montant < 0 || document.getElementById("montant").value === "") {
+        erreur.textContent = "Le montant doit être positif ou égal à zéro.";
+        return;
+    }
+
+    const coursChoisi = cours.find(function(c) {
+        return c.nom === nomCours;
+    });
+
+    if (!coursChoisi) {
+        erreur.textContent = "Sélectionne un cours valide.";
+        return;
+    }
+
+    const doublon = inscriptions.some(function(i) {
+        return i.id !== Number(id) &&
+            i.eleve.toLowerCase() === eleve.toLowerCase() &&
+            i.cours === nomCours;
+    });
+
+    if (doublon) {
+        erreur.textContent = "Cet élève est déjà inscrit à ce cours.";
+        return;
+    }
+
+    const nombreInscrits = inscriptions.filter(function(i) {
+        return i.cours === nomCours && i.id !== Number(id);
+    }).length;
+
+    if (nombreInscrits >= coursChoisi.capacite) {
+        erreur.textContent = "Ce cours est complet.";
+        return;
+    }
+
+    const nouvelleInscription = {
+        id: id ? Number(id) : Date.now(),
+        eleve: eleve,
+        niveau: niveau,
+        cours: nomCours,
+        telephone: telephone,
+        statut: statut,
+        date: new Date().toISOString().slice(0, 10),
+        montant: montant
+    };
+
+    if (id) {
+        const index = inscriptions.findIndex(function(i) {
+            return i.id === Number(id);
+        });
+
+        nouvelleInscription.date = inscriptions[index].date;
+        inscriptions[index] = nouvelleInscription;
+    } else {
+        inscriptions.push(nouvelleInscription);
+    }
+
+    sauvegarder();
+    pageActuelle = 1;
+    afficherInscriptions();
+    afficherStatistiques();
+    fermerFormulaire();
+});
+
 document.getElementById("recherche").addEventListener("input", function() {
     pageActuelle = 1;
     afficherInscriptions();
