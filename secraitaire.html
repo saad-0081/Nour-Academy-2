@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nour Academy | Administration</title>
+<link rel="stylesheet" href="/src/input.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bleu: "#13538A",
+            orange: "#F28D2B",
+            fond: "#CDDAE6"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[var(--color-nour-mist)] text-gray-800">
+
+<div class="min-h-screen md:flex">
+
+  <aside class="bg-[var(--color-nour-navy)] text-white w-full md:w-64 md:min-h-screen md:fixed md:inset-y-0 p-5 flex flex-col">
+
+    <div class="mb-8">
+      <img src="./images/logo-nouracademy.webp" alt="">
+      <p class="text-blue-200 text-sm mt-2">Espace Secraitaire</p>
+    </div>
+
+    <p class="text-xs uppercase tracking-widest text-blue-200 mb-3">
+      Menu principal
+    </p>
+
+    <nav class="space-y-2">
+      <button onclick="afficherPage('dashboard')"
+        id="menu-dashboard"
+        class="menu-btn w-full text-left px-4 py-3 rounded-xl bg-white/15">
+        Tableau de bord
+      </button>
+
+      <button onclick="afficherPage('inscriptions')"
+        id="menu-inscriptions"
+        class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-white/10">
+        Gestion des inscriptions
+      </button>
+    </nav>
+
+    <div class="mt-8 border-t border-white/20 pt-5">
+      <p class="text-xs uppercase tracking-widest text-blue-200 mb-3">
+        Actions rapides
+      </p>
+
+      <button onclick="ouvrirFormulaire()"
+        class="w-full bg-[var(--color-nour-orange)] hover:bg-orange/90 text-white font-semibold px-4 py-3 rounded-xl">
+        + Nouvelle inscription
+      </button>
+    </div>
+
+    <div class="mt-8 md:mt-auto bg-white/10 rounded-xl p-4">
+      <p class="font-semibold">Nour Academy</p>
+      <p class="text-sm text-blue-100 mt-1">Année scolaire 2026-2027</p>
+      <p class="text-xs text-blue-200 mt-3">Back-office du secrétariat</p>
+    </div>
+
+  </aside>
+
+  <main class="flex-1 p-4 md:p-8 md:ml-64">
+
+    <header class="flex flex-wrap justify-between items-center gap-4 mb-8">
+
+      <div>
+        <p class="text-sm text-gray-500">Secraitaire / Accueil</p>
+        <h2 id="titrePage" class="text-3xl font-bold text-bleu mt-2">
+          Tableau de bord
+        </h2>
+        <p id="descriptionPage" class="text-gray-500 mt-2">
+          Vue générale de l'activité de l'académie.
+        </p>
+      </div>
+
+     
+    </header>
+
+    <section id="dashboard">
+
+      <div class="bg-[var(--color-nour-navy)] text-white rounded-2xl p-6 md:p-8 mb-7 relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl">
+          <p class="text-blue-200 text-sm mb-3">ESPACE DE GESTION</p>
+
+          <h3 class="text-2xl md:text-3xl font-bold">
+            Bienvenue au secrétariat
+          </h3>
+
+          <p class="text-blue-100 mt-3 leading-7">
+            Consulte les inscriptions, vérifie les dossiers et suis
+            les paiements depuis un seul espace.
+          </p>
+
+          <button onclick="afficherPage('inscriptions')"
+            class="mt-5 bg-orange hover:bg-orange/90 text-white px-5 py-3 rounded-xl font-semibold">
+            Consulter les inscriptions
+          </button>
+        </div>
+
+      
+      </div>
+
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="text-xl font-bold text-bleu">Vue générale</h3>
+          <p class="text-sm text-gray-500 mt-1">Indicateurs des inscriptions</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex justify-between items-start">
+            <p class="text-gray-500 text-sm">Total des inscriptions</p>
+            <span class="bg-blue-50 text-bleu px-3 py-2 rounded-lg text-xs font-bold">TOTAL</span>
+          </div>
+          <h3 id="totalInscriptions" class="text-3xl font-bold text-bleu mt-4">0</h3>
+          <p class="text-xs text-gray-500 mt-2">Tous les dossiers enregistrés</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex justify-between items-start">
+            <p class="text-gray-500 text-sm">Dossiers payés</p>
+            <span class="bg-green-50 text-green-700 px-3 py-2 rounded-lg text-xs font-bold">PAYÉS</span>
+          </div>
+          <h3 id="totalPayes" class="text-3xl font-bold text-green-700 mt-4">0</h3>
+          <p id="pourcentagePayes" class="text-xs text-gray-500 mt-2">0 % des inscriptions</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex justify-between items-start">
+            <p class="text-gray-500 text-sm">Dossiers en attente</p>
+            <span class="bg-orange/15 text-orange px-3 py-2 rounded-lg text-xs font-bold">ATTENTE</span>
+          </div>
+          <h3 id="totalAttente" class="text-3xl font-bold text-orange mt-4">0</h3>
+          <p class="text-xs text-gray-500 mt-2">Paiement à vérifier</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex justify-between items-start">
+            <p class="text-gray-500 text-sm">Dossiers incomplets</p>
+            <span class="bg-red-50 text-red-600 px-3 py-2 rounded-lg text-xs font-bold">À VÉRIFIER</span>
+          </div>
+          <h3 id="totalIncomplets" class="text-3xl font-bold text-red-600 mt-4">0</h3>
+          <p class="text-xs text-gray-500 mt-2">Dossiers à compléter</p>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-8">
+
+        <div class="xl:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-bleu">État des dossiers</h3>
+            <p class="text-sm text-gray-500 mt-1">Répartition selon le statut</p>
+          </div>
+
+          <div class="space-y-6">
+
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="font-medium">Payés</span>
+                <span id="nombrePayesBarre">0</span>
+              </div>
+              <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div id="barrePayes" class="h-full bg-green-500 rounded-full" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="font-medium">En attente</span>
+                <span id="nombreAttenteBarre">0</span>
+              </div>
+              <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div id="barreAttente" class="h-full bg-[var(--color-nour-orange)] rounded-full" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="font-medium">Incomplets</span>
+                <span id="nombreIncompletsBarre">0</span>
+              </div>
+              <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div id="barreIncomplets" class="h-full bg-red-500 rounded-full" style="width:0%"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <button onclick="afficherPage('inscriptions')"
+            class="mt-7 text-bleu font-semibold text-sm hover:underline">
+            Voir tous les dossiers
+          </button>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <p class="text-gray-500 text-sm">Revenus encaissés</p>
+
+          <h3 id="revenus" class="text-3xl font-bold text-bleu mt-4">
+            0 MAD
+          </h3>
+
+          <div class="border-t border-gray-100 mt-6 pt-5">
+            <p class="text-sm text-gray-500">Montants à encaisser</p>
+            <h4 id="revenusAttente" class="text-xl font-bold text-orange mt-2">
+              0 MAD
+            </h4>
+          </div>
+
+          <div class="bg-blue-50 rounded-xl p-4 mt-6">
+            <p class="text-sm font-semibold text-bleu">Suivi financier</p>
+            <p class="text-xs text-gray-600 mt-2">
+              Les montants sont calculés à partir des inscriptions enregistrées.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mb-8">
+
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+          <div>
+            <h3 class="text-lg font-bold text-bleu">Capacité des cours</h3>
+            <p class="text-sm text-gray-500 mt-1">Nombre d'élèves inscrits par cours</p>
+          </div>
+
+          <button onclick="afficherPage('inscriptions')"
+            class="border border-bleu text-bleu px-4 py-2 rounded-lg text-sm font-semibold">
+            Gérer les inscriptions
+          </button>
+        </div>
+
+        <div id="capacites" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+
+        <div class="flex flex-wrap justify-between items-center gap-3 p-6">
+          <div>
+            <h3 class="text-lg font-bold text-bleu">Inscriptions récentes</h3>
+            <p class="text-sm text-gray-500 mt-1">Les derniers dossiers enregistrés</p>
+          </div>
+
+          <button onclick="afficherPage('inscriptions')"
+            class="text-bleu font-semibold text-sm hover:underline">
+            Voir tout
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left min-w-[650px]">
+            <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
+              <tr>
+                <th class="p-4">Élève</th>
+                <th class="p-4">Cours</th>
+                <th class="p-4">Date</th>
+                <th class="p-4">Statut</th>
+              </tr>
+            </thead>
+            <tbody id="inscriptionsRecentes"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="inscriptions" class="hidden">
+
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 mb-6 shadow-sm">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          <input id="recherche" type="text"
+            placeholder="Rechercher par nom ou téléphone"
+            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+
+          <select id="filtreStatut"
+            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+            <option value="">Tous les statuts</option>
+            <option value="Payé">Payé</option>
+            <option value="En attente">En attente</option>
+            <option value="Incomplet">Incomplet</option>
+          </select>
+
+          <select id="tri"
+            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+            <option value="dateDesc">Date : plus récente</option>
+            <option value="dateAsc">Date : plus ancienne</option>
+            <option value="nomAsc">Nom : A à Z</option>
+            <option value="nomDesc">Nom : Z à A</option>
+          </select>
+
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-5">
+          <button onclick="ouvrirFormulaire()"
+            class="bg-orange text-white px-5 py-3 rounded-xl font-semibold">
+            + Ajouter une inscription
+          </button>
+
+          <button onclick="exporterCSV()"
+            class="bg-bleu text-white px-5 py-3 rounded-xl font-semibold">
+            Exporter CSV
+          </button>
+
+          <button onclick="reinitialiser()"
+            class="border border-gray-300 px-5 py-3 rounded-xl">
+            Réinitialiser
+          </button>
+        </div>
+
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+
+        <div class="p-5 border-b border-gray-100">
+          <h3 class="text-lg font-bold text-bleu">Liste des inscriptions</h3>
+          <p id="nombreResultats" class="text-sm text-gray-500 mt-1"></p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left min-w-[950px]">
+            <thead class="bg-bleu text-white text-sm">
+              <tr>
+                <th class="p-4">Élève</th>
+                <th class="p-4">Niveau</th>
+                <th class="p-4">Cours</th>
+                <th class="p-4">Téléphone</th>
+                <th class="p-4">Statut</th>
+                <th class="p-4">Date</th>
+                <th class="p-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableInscriptions"></tbody>
+          </table>
+        </div>
+
+        <div class="flex justify-between items-center p-5">
+          <button id="precedent" onclick="changerPage(-1)"
+            class="border px-4 py-2 rounded-lg disabled:opacity-40">
+            Précédent
+          </button>
+
+          <span id="pageInfo" class="text-sm text-gray-500"></span>
+
+          <button id="suivant" onclick="changerPage(1)"
+            class="border px-4 py-2 rounded-lg disabled:opacity-40">
+            Suivant
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="modal"
+  class="hidden fixed inset-0 bg-gray-900/50 items-center justify-center p-4 z-50">
+
+  <form id="formInscription"
+    class="bg-white w-full max-w-xl rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h3 id="titreFormulaire" class="text-2xl font-bold text-bleu">
+          Nouvelle inscription
+        </h3>
+        <p class="text-sm text-gray-500 mt-1">Remplis les informations du dossier.</p>
+      </div>
+
+      <button type="button" onclick="fermerFormulaire()"
+        class="text-gray-500 text-2xl">&times;</button>
+    </div>
+
+    <input type="hidden" id="idInscription">
+
+    <div class="space-y-4">
+
+      <div>
+        <label for="eleve" class="block text-sm font-semibold mb-2">Nom complet de l'élève</label>
+        <input id="eleve" required
+          class="border border-gray-300 p-3 rounded-xl w-full outline-none focus:border-bleu">
+      </div>
+
+      <div>
+        <label for="niveau" class="block text-sm font-semibold mb-2">Niveau scolaire</label>
+        <select id="niveau" required
+          class="border border-gray-300 p-3 rounded-xl w-full">
+          <option value="Tronc commun">Tronc commun</option>
+          <option value="1 Bac">1 Bac</option>
+          <option value="2 Bac">2 Bac</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="cours" class="block text-sm font-semibold mb-2">Cours</label>
+        <select id="cours" required
+          class="border border-gray-300 p-3 rounded-xl w-full"></select>
+      </div>
+
+      <div>
+        <label for="telephone" class="block text-sm font-semibold mb-2">Téléphone du parent</label>
+        <input id="telephone" type="tel" placeholder="0612345678" required
+          class="border border-gray-300 p-3 rounded-xl w-full outline-none focus:border-bleu">
+      </div>
+
+      <div>
+        <label for="statut" class="block text-sm font-semibold mb-2">Statut du dossier</label>
+        <select id="statut" required
+          class="border border-gray-300 p-3 rounded-xl w-full">
+          <option value="En attente">En attente</option>
+          <option value="Payé">Payé</option>
+          <option value="Incomplet">Incomplet</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="montant" class="block text-sm font-semibold mb-2">Montant en MAD</label>
+        <input id="montant" type="number" min="0" value="300" required
+          class="border border-gray-300 p-3 rounded-xl w-full">
+      </div>
+
+    </div>
+
+    <p id="erreur" class="text-red-600 text-sm mt-4"></p>
+
+    <div class="flex flex-wrap gap-3 mt-6">
+      <button type="submit"
+        class="bg-orange text-white px-6 py-3 rounded-xl font-semibold">
+        Enregistrer
+      </button>
+
+      <button type="button" onclick="fermerFormulaire()"
+        class="border border-gray-300 px-6 py-3 rounded-xl">
+        Annuler
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<script src="./src/js/secretaire.js"></script>
+
+</body>
+</html>
