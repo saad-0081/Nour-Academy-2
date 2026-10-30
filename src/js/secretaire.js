@@ -430,6 +430,59 @@ formulaire.addEventListener("submit", function(event) {
     fermerFormulaire();
 });
 
+function supprimerInscription(id) {
+    if (confirm("Veux-tu vraiment supprimer cette inscription ?")) {
+        inscriptions = inscriptions.filter(function(i) {
+            return i.id !== id;
+        });
+
+        sauvegarder();
+        afficherInscriptions();
+        afficherStatistiques();
+    }
+}
+
+function exporterCSV() {
+    const resultat = obtenirInscriptionsFiltrees();
+    let csv = "Eleve;Niveau;Cours;Telephone;Statut;Date;Montant\n";
+
+    resultat.forEach(function(i) {
+        csv += [
+            i.eleve, i.niveau, i.cours, i.telephone,
+            i.statut, i.date, i.montant
+        ].join(";") + "\n";
+    });
+
+    const fichier = new Blob(["\uFEFF" + csv], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const lien = document.createElement("a");
+    const url = URL.createObjectURL(fichier);
+
+    lien.href = url;
+    lien.download = "inscriptions-nour-academy.csv";
+    lien.click();
+
+    URL.revokeObjectURL(url);
+}
+
+async function reinitialiser() {
+    if (!confirm("Remplacer les inscriptions actuelles par les données de démonstration ?")) {
+        return;
+    }
+
+    const reponse = await fetch("./src/data/data.json");
+    const donnees = await reponse.json();
+
+    inscriptions = donnees.inscriptions;
+    sauvegarder();
+
+    pageActuelle = 1;
+    afficherInscriptions();
+    afficherStatistiques();
+}
+
 document.getElementById("recherche").addEventListener("input", function() {
     pageActuelle = 1;
     afficherInscriptions();
