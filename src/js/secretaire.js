@@ -50,6 +50,42 @@ function remplirCours() {
     });
 }
 
+function afficherPage(page) {
+    document.getElementById("dashboard").classList.add("hidden");
+    document.getElementById("inscriptions").classList.add("hidden");
+    document.getElementById(page).classList.remove("hidden");
+
+    document.getElementById("titrePage").textContent =
+        page === "dashboard" ? "Tableau de bord" : "Gestion des inscriptions";
+
+    document.getElementById("descriptionPage").textContent =
+        page === "dashboard"
+            ? "Vue générale de l'activité de l'académie."
+            : "Recherche, modification et suivi des dossiers.";
+
+    document.querySelectorAll(".menu-btn").forEach(function(bouton) {
+        bouton.classList.remove("bg-white/15");
+    });
+
+    document.getElementById("menu-" + page).classList.add("bg-white/15");
+
+    if (location.hash !== "#" + page) {
+        location.hash = page;
+    }
+}
+
+function afficherPageDepuisHash() {
+    const page = location.hash.substring(1);
+
+    if (page === "dashboard" || page === "inscriptions") {
+        afficherPage(page);
+    } else {
+        afficherPage("dashboard");
+    }
+}
+
+window.addEventListener("hashchange", afficherPageDepuisHash);
+
 chargerDonnees().catch(function() {
     alert("Erreur de chargement. Vérifie le chemin de data.json et utilise Live Server.");
 });
