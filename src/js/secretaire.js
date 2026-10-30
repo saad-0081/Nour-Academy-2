@@ -86,6 +86,127 @@ function afficherPageDepuisHash() {
 
 window.addEventListener("hashchange", afficherPageDepuisHash);
 
+function afficherStatistiques() {
+    const total = inscriptions.length;
+    const payes = inscriptions.filter(function(i) {
+        return i.statut === "Payé";
+    });
+    const attente = inscriptions.filter(function(i) {
+        return i.statut === "En attente";
+    });
+    const incomplets = inscriptions.filter(function(i) {
+        return i.statut === "Incomplet";
+    });
+
+    document.getElementById("totalInscriptions").textContent = total;
+    document.getElementById("totalPayes").textContent = payes.length;
+    document.getElementById("totalAttente").textContent = attente.length;
+    document.getElementById("totalIncomplets").textContent = incomplets.length;
+
+    const pourcentage = total === 0 ? 0 : Math.round(payes.length / total * 100);
+
+    document.getElementById("pourcentagePayes").textContent =
+        pourcentage + " % des inscriptions";
+
+    const revenus = payes.reduce(function(somme, i) {
+        return somme + Number(i.montant);
+    }, 0);
+
+    const revenusAttente = attente.reduce(function(somme, i) {
+        return somme + Number(i.montant);
+    }, 0);
+
+    document.getElementById("revenus").textContent = revenus + " MAD";
+    document.getElementById("revenusAttente").textContent = revenusAttente + " MAD";
+
+    document.getElementById("barrePayes").style.width =
+        (total ? payes.length / total * 100 : 0) + "%";
+
+    document.getElementById("barreAttente").style.width =
+        (total ? attente.length / total * 100 : 0) + "%";
+
+    document.getElementById("barreIncomplets").style.width =
+        (total ? incomplets.length / total * 100 : 0) + "%";
+
+    document.getElementById("nombrePayesBarre").textContent = payes.length;
+    document.getElementById("nombreAttenteBarre").textContent = attente.length;
+    document.getElementById("nombreIncompletsBarre").textContent = incomplets.length;
+
+    afficherCapacites();
+    afficherInscriptionsRecentes();
+}
+
+function afficherCapacites() {
+    const zone = document.getElementById("capacites");
+    zone.innerHTML = "";
+
+    cours.forEach(function(c) {
+        const nombre = inscriptions.filter(function(i) {
+            return i.cours === c.nom;
+        }).length;
+
+        const places = Math.max(c.capacite - nombre, 0);
+        const pourcentage = Math.min(nombre / c.capacite * 100, 100);
+
+        zone.innerHTML += `
+            <div class="border border-gray-100 rounded-xl p-4">
+                <div class="flex justify-between mb-3">
+                    <div>
+                        <p class="font-semibold text-bleu">${c.nom}</p>
+                        <p class="text-xs text-gray-500">${c.niveau}</p>
+                    </div>
+                    <p class="text-sm">${nombre}/${c.capacite}</p>
+                </div>
+                <div class="bg-gray-100 h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-orange h-full rounded-full"
+                         style="width:${pourcentage}%"></div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">
+                    ${places} place(s) restante(s)
+                </p>
+            </div>`;
+    });
+}
+
+function afficherInscriptionsRecentes() {
+    const zone = document.getElementById("inscriptionsRecentes");
+
+    const recentes = [...inscriptions].sort(function(a, b) {
+        return b.date.localeCompare(a.date);
+    }).slice(0, 5);
+
+    zone.innerHTML = "";
+
+    recentes.forEach(function(i) {
+        zone.innerHTML += `
+            <tr class="border-t border-gray-100">
+                <td class="p-4">${i.eleve}</td>
+                <td class="p-4">${i.cours}</td>
+                <td class="p-4">${i.date}</td>
+                <td class="p-4">${afficherStatut(i.statut)}</td>
+            </tr>`;
+    });
+
+    if (recentes.length === 0) {
+        zone.innerHTML = `
+            <tr><td colspan="4" class="p-4 text-center">
+                Aucune inscription disponible.
+            </td></tr>`;
+    }
+}
+
+function afficherStatut(statut) {
+    let couleur = "bg-orange/15 text-orange";
+
+    if (statut === "Payé") {
+        couleur = "bg-green-100 text-green-700";
+    } else if (statut === "Incomplet") {
+        couleur = "bg-red-100 text-red-700";
+    }
+
+    return `<span class="${couleur} px-3 py-1 rounded-full text-xs">${statut}</span>`;
+}
+
 chargerDonnees().catch(function() {
     alert("Erreur de chargement. Vérifie le chemin de data.json et utilise Live Server.");
 });
