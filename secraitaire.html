@@ -63,11 +63,7 @@
       </button>
     </div>
 
-    <div class="mt-8 md:mt-auto bg-white/10 rounded-xl p-4">
-      <p class="font-semibold">Nour Academy</p>
-      <p class="text-sm text-blue-100 mt-1">Année scolaire 2026-2027</p>
-      <p class="text-xs text-blue-200 mt-3">Back-office du secrétariat</p>
-    </div>
+   
 
   </aside>
 
@@ -121,68 +117,68 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
 
-        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-[var(--color-nour-navy)] rounded-2xl border border-gray-200 p-5 shadow-sm">
           <div class="flex justify-between items-start">
-            <p class="text-gray-500 text-sm">Total des inscriptions</p>
-            <span class="bg-blue-50 text-bleu px-3 py-2 rounded-lg text-xs font-bold">TOTAL</span>
+            <p class="text-white text-sm">Total des inscriptions</p>
+            <span class="bg-[var(--color-nour-orange)] text-white px-3 py-2 rounded-lg text-xs font-bold">TOTAL</span>
           </div>
-          <h3 id="totalInscriptions" class="text-3xl font-bold text-bleu mt-4">0</h3>
-          <p class="text-xs text-gray-500 mt-2">Tous les dossiers enregistrés</p>
+          <h3 id="totalInscriptions" class="text-3xl font-bold text-[var(--color-nour-mist)] mt-4">0</h3>
+          <p class="text-xs text-white mt-2">Tous les dossiers enregistrés</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-[var(--color-nour-navy)] rounded-2xl border border-gray-200 p-5 shadow-sm">
           <div class="flex justify-between items-start">
-            <p class="text-gray-500 text-sm">Dossiers payés</p>
-            <span class="bg-green-50 text-green-700 px-3 py-2 rounded-lg text-xs font-bold">PAYÉS</span>
+            <p class="text-white text-sm">Dossiers payés</p>
+            <span class="bg-[var(--color-nour-orange)] text-white px-3 py-2 rounded-lg text-xs font-bold">PAYÉS</span>
           </div>
-          <h3 id="totalPayes" class="text-3xl font-bold text-green-700 mt-4">0</h3>
-          <p id="pourcentagePayes" class="text-xs text-gray-500 mt-2">0 % des inscriptions</p>
+          <h3 id="totalPayes" class="text-3xl font-bold text-[var(--color-nour-mist)] mt-4">0</h3>
+          <p id="pourcentagePayes" class="text-xs text-white mt-2">0 % des inscriptions</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-[var(--color-nour-navy)] rounded-2xl border border-gray-200 p-5 shadow-sm">
           <div class="flex justify-between items-start">
-            <p class="text-gray-500 text-sm">Dossiers en attente</p>
-            <span class="bg-orange/15 text-orange px-3 py-2 rounded-lg text-xs font-bold">ATTENTE</span>
+            <p class="text-white text-sm">Dossiers en attente</p>
+            <span class="bg-[var(--color-nour-orange)] text-white px-3 py-2 rounded-lg text-xs font-bold">ATTENTE</span>
           </div>
-          <h3 id="totalAttente" class="text-3xl font-bold text-orange mt-4">0</h3>
-          <p class="text-xs text-gray-500 mt-2">Paiement à vérifier</p>
+          <h3 id="totalAttente" class="text-3xl font-bold text-[var(--color-nour-mist)] mt-4">0</h3>
+          <p class="text-xs text-white mt-2">Paiement à vérifier</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-[var(--color-nour-navy)] rounded-2xl border border-gray-200 p-5 shadow-sm">
           <div class="flex justify-between items-start">
-            <p class="text-gray-500 text-sm">Dossiers incomplets</p>
-            <span class="bg-red-50 text-red-600 px-3 py-2 rounded-lg text-xs font-bold">À VÉRIFIER</span>
+            <p class="text-white text-sm">Dossiers incomplets</p>
+            <span class="bg-[var(--color-nour-orange)] text-white px-3 py-2 rounded-lg text-xs font-bold">À VÉRIFIER</span>
           </div>
-          <h3 id="totalIncomplets" class="text-3xl font-bold text-red-600 mt-4">0</h3>
-          <p class="text-xs text-gray-500 mt-2">Dossiers à compléter</p>
+          <h3 id="totalIncomplets" class="text-3xl font-bold text-[var(--color-nour-mist)] mt-4">0</h3>
+          <p class="text-xs text-white mt-2">Dossiers à compléter</p>
         </div>
 
       </div>
 
       <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-8">
 
-        <div class="xl:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <div class="xl:col-span-2 bg-[var(--color-nour-navy)] border border-gray-200 rounded-2xl p-6 shadow-sm">
           <div class="mb-6">
-            <h3 class="text-lg font-bold text-bleu">État des dossiers</h3>
-            <p class="text-sm text-gray-500 mt-1">Répartition selon le statut</p>
+            <h3 class="text-lg font-bold text-white">État des dossiers</h3>
+            <p class="text-sm text-[var(--color-nour-mist)] mt-1">Répartition selon le statut</p>
           </div>
 
           <div class="space-y-6">
 
             <div>
               <div class="flex justify-between text-sm mb-2">
-                <span class="font-medium">Payés</span>
-                <span id="nombrePayesBarre">0</span>
+                <span class="font-medium text-[var(--color-nour-mist)]">Payés</span>
+                <span id="nombrePayesBarre" class="text-[var(--color-nour-mist)]">0</span>
               </div>
               <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div id="barrePayes" class="h-full bg-green-500 rounded-full" style="width:0%"></div>
+                <div id="barrePayes" class="h-full bg-[var(--color-nour-orange)] rounded-full" style="width:0%"></div>
               </div>
             </div>
 
             <div>
               <div class="flex justify-between text-sm mb-2">
-                <span class="font-medium">En attente</span>
-                <span id="nombreAttenteBarre">0</span>
+                <span class="font-medium text-[var(--color-nour-mist)]">En attente</span>
+                <span id="nombreAttenteBarre" class="text-[var(--color-nour-mist)]">0</span>
               </div>
               <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
                 <div id="barreAttente" class="h-full bg-[var(--color-nour-orange)] rounded-full" style="width:0%"></div>
@@ -191,39 +187,39 @@
 
             <div>
               <div class="flex justify-between text-sm mb-2">
-                <span class="font-medium">Incomplets</span>
-                <span id="nombreIncompletsBarre">0</span>
+                <span class="font-medium text-[var(--color-nour-mist)]">Incomplets</span>
+                <span id="nombreIncompletsBarre" class="text-[var(--color-nour-mist)]">0</span>
               </div>
               <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div id="barreIncomplets" class="h-full bg-red-500 rounded-full" style="width:0%"></div>
+                <div id="barreIncomplets" class="h-full bg-[var(--color-nour-orange)] rounded-full" style="width:0%"></div>
               </div>
             </div>
 
           </div>
 
           <button onclick="afficherPage('inscriptions')"
-            class="mt-7 text-bleu font-semibold text-sm hover:underline">
+            class="mt-7 text-[var(--color-nour-orange)] font-semibold text-sm hover:underline">
             Voir tous les dossiers
           </button>
         </div>
 
-        <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <p class="text-gray-500 text-sm">Revenus encaissés</p>
+        <div class="bg-[var(--color-nour-navy)] border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <p class="text-white text-sm">Revenus encaissés</p>
 
-          <h3 id="revenus" class="text-3xl font-bold text-bleu mt-4">
+          <h3 id="revenus" class="text-3xl font-bold text-[var(--color-nour-mist)] mt-4">
             0 MAD
           </h3>
 
           <div class="border-t border-gray-100 mt-6 pt-5">
-            <p class="text-sm text-gray-500">Montants à encaisser</p>
+            <p class="text-sm text-white">Montants à encaisser</p>
             <h4 id="revenusAttente" class="text-xl font-bold text-orange mt-2">
               0 MAD
             </h4>
           </div>
 
-          <div class="bg-blue-50 rounded-xl p-4 mt-6">
-            <p class="text-sm font-semibold text-bleu">Suivi financier</p>
-            <p class="text-xs text-gray-600 mt-2">
+          <div class="bg-[var(--color-nour-orange)] rounded-xl p-4 mt-6">
+            <p class="text-sm font-semibold text-white">Suivi financier</p>
+            <p class="text-xs text-white mt-2">
               Les montants sont calculés à partir des inscriptions enregistrées.
             </p>
           </div>
@@ -231,16 +227,16 @@
 
       </div>
 
-      <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mb-8">
+      <div class="bg-[var(--color-nour-navy)] border border-gray-200 rounded-2xl p-6 shadow-sm mb-8">
 
         <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
           <div>
-            <h3 class="text-lg font-bold text-bleu">Capacité des cours</h3>
-            <p class="text-sm text-gray-500 mt-1">Nombre d'élèves inscrits par cours</p>
+            <h3 class="text-lg font-bold text-white">Capacité des cours</h3>
+            <p class="text-sm text-[var(--color-nour-mist)] mt-1">Nombre d'élèves inscrits par cours</p>
           </div>
 
           <button onclick="afficherPage('inscriptions')"
-            class="border border-bleu text-bleu px-4 py-2 rounded-lg text-sm font-semibold">
+            class="bg-[var(--color-nour-orange)] text-white px-4 py-2 rounded-lg text-sm font-semibold">
             Gérer les inscriptions
           </button>
         </div>
@@ -249,23 +245,23 @@
 
       </div>
 
-      <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div class="bg-[var(--color-nour-navy)] border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
 
         <div class="flex flex-wrap justify-between items-center gap-3 p-6">
           <div>
-            <h3 class="text-lg font-bold text-bleu">Inscriptions récentes</h3>
-            <p class="text-sm text-gray-500 mt-1">Les derniers dossiers enregistrés</p>
+            <h3 class="text-lg font-bold text-white">Inscriptions récentes</h3>
+            <p class="text-sm text-[var(--color-nour-mist)] mt-1">Les derniers dossiers enregistrés</p>
           </div>
 
           <button onclick="afficherPage('inscriptions')"
-            class="text-bleu font-semibold text-sm hover:underline">
+            class="text-[var(--color-nour-orange)] font-semibold text-sm hover:underline">
             Voir tout
           </button>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full text-left min-w-[650px]">
-            <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
+            <thead class="bg-[var(--color-nour-orange)] text-white text-xs uppercase">
               <tr>
                 <th class="p-4">Élève</th>
                 <th class="p-4">Cours</th>
@@ -273,7 +269,7 @@
                 <th class="p-4">Statut</th>
               </tr>
             </thead>
-            <tbody id="inscriptionsRecentes"></tbody>
+            <tbody id="inscriptionsRecentes" class=""></tbody>
           </table>
         </div>
 
@@ -283,16 +279,16 @@
 
     <section id="inscriptions" class="hidden">
 
-      <div class="bg-white border border-gray-200 rounded-2xl p-5 mb-6 shadow-sm">
+      <div class="bg-[var(--color-nour-navy)] rounded-2xl p-5 mb-6 shadow-sm">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
           <input id="recherche" type="text"
             placeholder="Rechercher par nom ou téléphone"
-            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+            class="border p-3 rounded-xl outline-none focus:border-[var(--color-nour-orange)] text-[var(--color-nour-navy)] bg-[var(--color-nour-mist)] placeholder:text-[var(--color-nour-navy)]">
 
           <select id="filtreStatut"
-            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+            class="border p-3 rounded-xl outline-none focus:border-[var(--color-nour-orange)] text-[var(--color-nour-navy)] bg-[var(--color-nour-mist)]">
             <option value="">Tous les statuts</option>
             <option value="Payé">Payé</option>
             <option value="En attente">En attente</option>
@@ -300,7 +296,7 @@
           </select>
 
           <select id="tri"
-            class="border border-gray-300 p-3 rounded-xl outline-none focus:border-bleu">
+            class="border p-3 rounded-xl outline-none focus:border-[var(--color-nour-orange)] text-[var(--color-nour-navy)] bg-[var(--color-nour-mist)]">
             <option value="dateDesc">Date : plus récente</option>
             <option value="dateAsc">Date : plus ancienne</option>
             <option value="nomAsc">Nom : A à Z</option>
@@ -316,28 +312,28 @@
           </button>
 
           <button onclick="exporterCSV()"
-            class="bg-bleu text-white px-5 py-3 rounded-xl font-semibold">
+            class="bg-[var(--color-nour-mist)] text-[var(--color-nour-navy)] px-5 py-3 rounded-xl font-semibold">
             Exporter CSV
           </button>
 
           <button onclick="reinitialiser()"
-            class="border border-gray-300 px-5 py-3 rounded-xl">
+            class="border border-[var(--color-nour-mist)] text-white px-5 py-3 rounded-xl">
             Réinitialiser
           </button>
         </div>
 
       </div>
 
-      <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div class="bg-[var(--color-nour-navy)] border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
 
         <div class="p-5 border-b border-gray-100">
-          <h3 class="text-lg font-bold text-bleu">Liste des inscriptions</h3>
-          <p id="nombreResultats" class="text-sm text-gray-500 mt-1"></p>
+          <h3 class="text-lg font-bold text-white">Liste des inscriptions</h3>
+          <p id="nombreResultats" class="text-sm text-[var(--color-nour-mist)] mt-1"></p>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full text-left min-w-[950px]">
-            <thead class="bg-bleu text-white text-sm">
+            <thead  class="bg-[var(--color-nour-orange)] text-white text-xs uppercase">
               <tr>
                 <th class="p-4">Élève</th>
                 <th class="p-4">Niveau</th>
@@ -354,14 +350,14 @@
 
         <div class="flex justify-between items-center p-5">
           <button id="precedent" onclick="changerPage(-1)"
-            class="border px-4 py-2 rounded-lg disabled:opacity-40">
+            class="border border-[var(--color-nour-orange)] text-[var(--color-nour-orange)] px-4 py-2 rounded-lg disabled:opacity-40">
             Précédent
           </button>
 
-          <span id="pageInfo" class="text-sm text-gray-500"></span>
+          <span id="pageInfo" class="text-sm text-[var(--color-nour-mist)]"></span>
 
           <button id="suivant" onclick="changerPage(1)"
-            class="border px-4 py-2 rounded-lg disabled:opacity-40">
+            class="border border-[var(--color-nour-orange)] text-[var(--color-nour-orange)] px-4 py-2 rounded-lg disabled:opacity-40">
             Suivant
           </button>
         </div>

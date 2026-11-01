@@ -149,19 +149,19 @@ function afficherCapacites() {
         const pourcentage = Math.min(nombre / c.capacite * 100, 100);
 
         zone.innerHTML += `
-            <div class="border border-gray-100 rounded-xl p-4">
+            <div class="  bg-[var(--color-nour-mist)] rounded-xl p-4">
                 <div class="flex justify-between mb-3">
                     <div>
-                        <p class="font-semibold text-bleu">${c.nom}</p>
-                        <p class="text-xs text-gray-500">${c.niveau}</p>
+                        <p class="font-semibold text-[var(--color-nour-navy)]">${c.nom}</p>
+                        <p class="text-xs text-[var(--color-nour-navy)]">${c.niveau}</p>
                     </div>
-                    <p class="text-sm">${nombre}/${c.capacite}</p>
+                    <p class="text-sm text-[var(--color-nour-navy)]">${nombre}/${c.capacite}</p>
                 </div>
-                <div class="bg-gray-100 h-2.5 rounded-full overflow-hidden">
-                    <div class="bg-orange h-full rounded-full"
+                <div class="bg-white h-2.5 rounded-full  overflow-hidden">
+                    <div class="bg-[var(--color-nour-orange)]  h-full rounded-full"
                          style="width:${pourcentage}%"></div>
                 </div>
-                <p class="text-xs text-gray-500 mt-2">
+                <p class="text-xs text-[var(--color-nour-navy)] mt-2">
                     ${places} place(s) restante(s)
                 </p>
             </div>`;
@@ -179,7 +179,7 @@ function afficherInscriptionsRecentes() {
 
     recentes.forEach(function(i) {
         zone.innerHTML += `
-            <tr class="border-t border-gray-100">
+            <tr class="border-t text-white border-[var(--color-nour-orange)]">
                 <td class="p-4">${i.eleve}</td>
                 <td class="p-4">${i.cours}</td>
                 <td class="p-4">${i.date}</td>
@@ -196,12 +196,10 @@ function afficherInscriptionsRecentes() {
 }
 
 function afficherStatut(statut) {
-    let couleur = "bg-orange/15 text-orange";
+    let couleur = "bg-[var(--color-nour-orange)] text-white";
 
-    if (statut === "Payé") {
-        couleur = "bg-green-100 text-green-700";
-    } else if (statut === "Incomplet") {
-        couleur = "bg-red-100 text-red-700";
+     if (statut === "Incomplet" || statut === "En attente") {
+        couleur = "border border-[var(--color-nour-orange)] text-white";
     }
 
     return `<span class="${couleur} px-3 py-1 rounded-full text-xs">${statut}</span>`;
@@ -267,7 +265,7 @@ function afficherInscriptions() {
 
     liste.forEach(function(i) {
         table.innerHTML += `
-            <tr class="border-b border-gray-100">
+            <tr class="border-t text-white border-[var(--color-nour-orange)]">
                 <td class="p-4">${i.eleve}</td>
                 <td class="p-4">${i.niveau}</td>
                 <td class="p-4">${i.cours}</td>
@@ -276,9 +274,9 @@ function afficherInscriptions() {
                 <td class="p-4">${i.date}</td>
                 <td class="p-4">
                     <button onclick="modifierInscription(${i.id})"
-                        class="text-bleu mr-2">Modifier</button>
+                        class="text-white py-2 px-3 border rounded-xl border-[var(--color-nour-mist)] mr-2">Modifier</button>
                     <button onclick="supprimerInscription(${i.id})"
-                        class="text-red-600">Supprimer</button>
+                        class="text-white bg-[var(--color-nour-orange)] py-2 px-3 rounded-xl">Supprimer</button>
                 </td>
             </tr>`;
     });
