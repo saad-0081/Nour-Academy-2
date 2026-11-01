@@ -501,3 +501,18 @@ document.getElementById("tri").addEventListener("change", function() {
 chargerDonnees().catch(function() {
     alert("Erreur de chargement. Vérifie le chemin de data.json et utilise Live Server.");
 });
+
+
+
+
+window.addEventListener("storage", function(event) {
+
+    if (event.key === "inscriptions" && event.newValue) {
+
+        inscriptions = JSON.parse(event.newValue);
+
+        afficherInscriptions();
+        afficherStatistiques();
+    }
+
+});

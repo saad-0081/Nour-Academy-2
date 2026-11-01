@@ -50,11 +50,98 @@
                 Se connecter
             </button>
         </form>
+
+
+
         <p class="mt-6 text-center text-xs text-[#D5E2EF]">
             Accès réservé au personnel de Nour Academy.
         </p>
+
+
+        <button type="button" id="ouvrirInscription"
+    class="mt-4 w-full rounded-full border-2 border-[#F79428] p-3 font-bold text-white transition hover:bg-[#F79428] hover:text-[#173E5B]">
+    Inscrire mon enfant
+</button>
+
+<div id="modalInscription"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+
+    <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-[#13538A]">
+                    Inscription Nour Academy
+                </h2>
+                <p class="mt-1 text-sm text-gray-500">
+                    Remplissez les informations de vos enfants.
+                </p>
+            </div>
+
+            <button type="button" id="fermerInscription"
+                class="text-2xl font-bold text-gray-500 hover:text-red-500">
+                &times;
+            </button>
+        </div>
+
+        <form id="formInscriptionPublic" class="space-y-5">
+
+            <div>
+                <label for="telephoneParent"
+                    class="mb-2 block font-semibold text-[#0A2A45]">
+                    Téléphone du parent
+                </label>
+
+                <input type="tel" id="telephoneParent"
+                    placeholder="0612345678" required
+                    class="w-full rounded-xl border border-gray-300 p-3 outline-none focus:border-[#F28D2B]">
+            </div>
+
+            <div>
+                <h3 class="mb-3 font-bold text-[#0A2A45]">
+                    Choisissez vos cours
+                </h3>
+
+                <div id="listeCours"
+                    class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                </div>
+            </div>
+
+            <div id="zoneEleves" class="space-y-4">
+            </div>
+
+            <div class="rounded-xl bg-[#EAF1F7] p-4">
+                <div class="flex justify-between font-semibold text-[#13538A]">
+                    <span>Nombre de cours :</span>
+                    <span id="nombreCours">0</span>
+                </div>
+
+                <div class="mt-2 flex justify-between text-lg font-bold text-[#F28D2B]">
+                    <span>Montant total :</span>
+                    <span id="montantTotal">0 MAD</span>
+                </div>
+            </div>
+
+            <p id="erreurInscription" class="text-sm text-red-600"></p>
+
+            <button type="submit"
+                class="w-full rounded-full bg-[#F28D2B] p-3 font-bold text-[#0A2A45] transition hover:bg-orange-300">
+                Confirmer l'inscription
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
     </main>
+
+
+    
+
+    
     <script type="module" src="./src/js/validation.js"></script>
+    <script type="module" src="./src/js/inscriptions.js"></script>
 
 </body>
 </html>
