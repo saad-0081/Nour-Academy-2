@@ -13,7 +13,7 @@
               input: {
                   main: resolve(root, 'index.html'),
                   admin: resolve(root, 'admin.html'),
-                  secretaire: resolve(root, 'secretaire.html')
+                  secretaire: resolve(root, 'secraitaire.html')
               },
           },
       },
