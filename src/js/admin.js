@@ -4,7 +4,7 @@ let cours = [];
 
 async function chargerDonnees() {
     try {
-        const reponse = await fetch("/src/data/data.json");
+        const reponse = await fetch("/data/data.json");
 
         if (!reponse.ok) {
             throw new Error("Impossible de charger les données");

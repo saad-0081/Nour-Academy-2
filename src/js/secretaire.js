@@ -8,7 +8,7 @@ const formulaire = document.getElementById("formInscription");
 const modal = document.getElementById("modal");
 
 async function chargerDonnees() {
-    const reponse = await fetch("./src/data/data.json");
+    const reponse = await fetch("./data/data.json");
     const donnees = await reponse.json();
 
     cours = donnees.cours;
@@ -470,7 +470,7 @@ async function reinitialiser() {
         return;
     }
 
-    const reponse = await fetch("./src/data/data.json");
+    const reponse = await fetch("./data/data.json");
     const donnees = await reponse.json();
 
     inscriptions = donnees.inscriptions;

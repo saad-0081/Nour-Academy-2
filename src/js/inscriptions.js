@@ -35,7 +35,7 @@ modal.addEventListener("click", (e) => {
 
 async function chargerCours() {
     try {
-        const reponse = await fetch("./src/data/data.json");
+        const reponse = await fetch("./data/data.json");
         const donnees = await reponse.json();
         cours = donnees.cours;
 
