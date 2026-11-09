@@ -8,7 +8,7 @@ const formulaire = document.getElementById("formInscription");
 const modal = document.getElementById("modal");
 
 async function chargerDonnees() {
-    const reponse = await fetch("./data/data.json");
+    const reponse = await fetch("/data/data.json");
     const donnees = await reponse.json();
 
     cours = donnees.cours;
@@ -74,6 +74,7 @@ function afficherPage(page) {
     }
 }
 
+
 function afficherPageDepuisHash() {
     const page = location.hash.substring(1);
 
@@ -84,7 +85,12 @@ function afficherPageDepuisHash() {
     }
 }
 
+// Au chargement initial
+window.addEventListener("DOMContentLoaded", afficherPageDepuisHash);
+
+// Lorsqu'on change de section
 window.addEventListener("hashchange", afficherPageDepuisHash);
+
 
 function afficherStatistiques() {
     const total = inscriptions.length;
