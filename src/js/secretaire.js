@@ -85,10 +85,6 @@ function afficherPageDepuisHash() {
     }
 }
 
-// Au chargement initial
-window.addEventListener("DOMContentLoaded", afficherPageDepuisHash);
-
-// Lorsqu'on change de section
 window.addEventListener("hashchange", afficherPageDepuisHash);
 
 
@@ -476,7 +472,7 @@ async function reinitialiser() {
         return;
     }
 
-    const reponse = await fetch("./data/data.json");
+    const reponse = await fetch("/data/data.json");
     const donnees = await reponse.json();
 
     inscriptions = donnees.inscriptions;
@@ -500,6 +496,17 @@ document.getElementById("filtreStatut").addEventListener("change", function() {
 document.getElementById("tri").addEventListener("change", function() {
     pageActuelle = 1;
     afficherInscriptions();
+});
+
+Object.assign(window, {
+    afficherPage,
+    ouvrirFormulaire,
+    fermerFormulaire,
+    exporterCSV,
+    reinitialiser,
+    changerPage,
+    modifierInscription,
+    supprimerInscription
 });
 
 chargerDonnees().catch(function() {
