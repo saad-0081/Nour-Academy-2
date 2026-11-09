@@ -14,6 +14,7 @@ import { defineConfig } from 'vite'
                   main: resolve(root, 'index.html'),
                   admin: resolve(root, 'admin.html'),
                   secretaire: resolve(root, 'secraitaire.html')
+                 
               },
           },
       },
