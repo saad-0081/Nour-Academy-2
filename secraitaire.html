@@ -6,21 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nour Academy | Administration</title>
 <link rel="stylesheet" href="/src/input.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+ 
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bleu: "#13538A",
-            orange: "#F28D2B",
-            fond: "#CDDAE6"
-          }
-        }
-      }
-    }
-  </script>
+ 
 </head>
 
 <body class="bg-[var(--color-nour-mist)] text-gray-800">
@@ -73,7 +61,7 @@
 
       <div>
         <p class="text-sm text-gray-500">Secraitaire / Accueil</p>
-        <h2 id="titrePage" class="text-3xl font-bold text-bleu mt-2">
+        <h2 id="titrePage" class="text-3xl font-bold text-[var(--color-nour-navy)] mt-2">
           Tableau de bord
         </h2>
         <p id="descriptionPage" class="text-gray-500 mt-2">
@@ -100,7 +88,7 @@
           </p>
 
           <button onclick="afficherPage('inscriptions')"
-            class="mt-5 bg-orange hover:bg-orange/90 text-white px-5 py-3 rounded-xl font-semibold">
+            class="border mt-5 bg-[var(--color-nour-orange)] hover:bg-[var(--color-nour-navy)] border border-[var(--color-nour-orange)] hover:border-[var(--color-nour-orange)] text-white px-5 py-3 rounded-xl font-semibold">
             Consulter les inscriptions
           </button>
         </div>
@@ -110,7 +98,7 @@
 
       <div class="flex justify-between items-center mb-4">
         <div>
-          <h3 class="text-xl font-bold text-bleu">Vue générale</h3>
+          <h3 class="text-xl font-bold text-[var(--color-nour-navy)]">Vue générale</h3>
           <p class="text-sm text-gray-500 mt-1">Indicateurs des inscriptions</p>
         </div>
       </div>
@@ -307,7 +295,7 @@
 
         <div class="flex flex-wrap gap-3 mt-5">
           <button onclick="ouvrirFormulaire()"
-            class="bg-orange text-white px-5 py-3 rounded-xl font-semibold">
+            class="bg-[var(--color-nour-orange)] text-white px-5 py-3 rounded-xl font-semibold">
             + Ajouter une inscription
           </button>
 
@@ -376,7 +364,7 @@
 
     <div class="flex justify-between items-center mb-6">
       <div>
-        <h3 id="titreFormulaire" class="text-2xl font-bold text-bleu">
+        <h3 id="titreFormulaire" class="text-2xl font-bold text-[var(--color-nour-navy)]">
           Nouvelle inscription
         </h3>
         <p class="text-sm text-gray-500 mt-1">Remplis les informations du dossier.</p>
@@ -440,7 +428,7 @@
 
     <div class="flex flex-wrap gap-3 mt-6">
       <button type="submit"
-        class="bg-orange text-white px-6 py-3 rounded-xl font-semibold">
+        class="bg-[var(--color-nour-orange)] text-white px-6 py-3 rounded-xl font-semibold">
         Enregistrer
       </button>
 
